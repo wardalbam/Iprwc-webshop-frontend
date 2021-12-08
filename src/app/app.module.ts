@@ -1,22 +1,39 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
-import {ServerComponent} from "./server/server.component";
-import { ServersComponent } from './servers/servers.component';
-import {WarningAlertComponent} from "./WarningAlert/WarningAlert.component";
-import {FormsModule} from "@angular/forms";
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductControllerComponent } from './product/product-list/product-controller/product-controller.component';
+import { HeaderComponent } from './header/header.component';
+import {RouterModule, Routes} from "@angular/router";
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductComponent } from './product/product.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+
+const appRoutes: Routes = [
+  { path: 'cart', component: ShoppingCartComponent },
+  { path: '', component: HomeComponent },
+  { path: ':product_id', component: ProductDetailsComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent,
-    ServersComponent,
-    WarningAlertComponent
+    ProductListComponent,
+    ProductControllerComponent,
+    HeaderComponent,
+    ShoppingCartComponent,
+    ProductComponent,
+    HomeComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,5 @@
+<div class="product-editor-controller">
+  <button class="remove-product btn-danger"  (click)="addProduct()"> add </button>
+  <button class="add-product btn-primary" [ngStyle]="{'display': amount_product === 0 ? 'none' : 'block' }"  (click)="removeProduct()"> remove </button>
+  <p class="total-amount-product" [ngStyle]="{'display': amount_product === 0 ? 'none' : 'block' }">{{amount_product}}</p>
+</div>

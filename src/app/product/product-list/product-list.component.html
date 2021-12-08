@@ -1,0 +1,16 @@
+<div class="product-list-container">
+  <ul class="product-list">
+    <li class="product-item" *ngFor="let product of productenList">
+      <a routerLink="{{ product.id }}">
+        <figure>
+          <img src="{{product.imagePath}}" alt="" class="product-image">
+        </figure>
+        <div class="product-details">
+          <h4 style="color: #a92299;">{{ product.name }}</h4>
+          <p>{{ product.price }}€</p>
+        </div>
+      </a>
+      <app-product-controller [product]="product"></app-product-controller>
+    </li>
+  </ul>
+</div>

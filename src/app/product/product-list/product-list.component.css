@@ -1,0 +1,22 @@
+a{
+  text-decoration: none;
+}
+.product-image{
+  max-width: 170px;
+}
+.product-item{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  text-align: center;
+  /*background-color: #23744322;*/
+}
+.product-list{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
