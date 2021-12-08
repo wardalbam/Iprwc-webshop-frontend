@@ -9,7 +9,8 @@ import {Subject} from "rxjs";
 })
 export class ShoppingCartService{
   public shoppingCartAmount: Subject<number> = new Subject<number>();
-  private shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
+  public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
+
   constructor() {  }
 
   getAllCartLines(){
@@ -18,7 +19,7 @@ export class ShoppingCartService{
   removeAllCartLines(){
 
   }
-  addCartLine(product : Product){
+  addProductToCart(product : Product){
     if(this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product)){
       this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount++;
     }else{
@@ -26,8 +27,17 @@ export class ShoppingCartService{
     }
     this.shoppingCartAmount.next(this.getTotalAmountProducts());
   }
-  removeCartLine(){
-
+  removeProductFromCart(product : Product){
+    if(this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product)){
+      // this is not working !!!!!!!!
+      if(this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount === 1){
+      //  remove from the list
+        delete this.shoppingCart.shoppingCartLineList[ this.shoppingCart.shoppingCartLineList.findIndex(shoppingCartLine => shoppingCartLine.product == product) ];
+      }else{
+        this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount--;
+      }
+    }
+    this.shoppingCartAmount.next(this.getTotalAmountProducts());
   }
   getTotalAmountProducts(){
     let counter: number = 0;
@@ -36,6 +46,5 @@ export class ShoppingCartService{
     })
     return counter;
   }
-
 
 }
