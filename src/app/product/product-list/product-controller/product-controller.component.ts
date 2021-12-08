@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {Product} from "../../../shared/Product.model";
 import {ProductService} from "../../product.service";
 import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product-controller',
@@ -10,16 +11,23 @@ import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service"
 })
 export class ProductControllerComponent implements OnInit {
   @Input() product: Product;
+
+  subscription: Subscription;
   amount_product : number = 0;
-  userWantsToAddProduct = new EventEmitter<Product>();
-  constructor(private shoppingCart: ShoppingCartService ) { }
+
+  constructor(private shoppingCartService: ShoppingCartService ) { }
 
   ngOnInit(): void {
+
   }
+
   addProduct(){
-    this.shoppingCart.addCartLine(this.product);
+    this.shoppingCartService.addProductToCart(this.product);
+    this.amount_product++;
   }
   removeProduct(){
-    this.amount_product--;
+    this.shoppingCartService.removeProductFromCart(this.product);
   }
+
+
 }

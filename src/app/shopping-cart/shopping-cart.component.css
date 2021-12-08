@@ -1,0 +1,16 @@
+.product-container{
+  width: 90%;
+  background-color: cadetblue;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto;
+  align-items: baseline;
+  align-content: space-between;
+}
+.product-item-image{
+  margin: 10px;
+}
+.product-item-name{
+  margin: 20px;
+}

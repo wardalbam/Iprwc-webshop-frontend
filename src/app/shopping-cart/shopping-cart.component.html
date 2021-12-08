@@ -1,1 +1,9 @@
 
+
+<div class="product-container" *ngFor="let productItem of productRowList">
+  <figure>
+    <img class="product-item-image" src="{{ productItem.product.imagePath }}" alt="" style="max-width: 100px;">
+  </figure>
+  <h3 class="product-item-name" >{{productItem.product.name}}</h3>
+  <p class="product-item-name">{{ productItem.amount }}</p>
+</div>
