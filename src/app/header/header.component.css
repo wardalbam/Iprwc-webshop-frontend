@@ -1,0 +1,22 @@
+.shopping-cart{
+  max-width: 40px;
+}
+.logo{
+  max-width: 100px;
+  margin: 20px;
+}
+.navigation-container{
+  display: flex;
+  -ms-flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 1000px;
+  align-items: baseline;
+  margin: 10px auto;
+}
+.navigation-container ul{
+  list-style: none;
+}
+.navigation-container ul li a{
+  margin: 15px;
+}
