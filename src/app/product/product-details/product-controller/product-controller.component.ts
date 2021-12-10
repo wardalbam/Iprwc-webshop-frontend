@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {Product} from "../../../shared/Product.model";
-import {ProductService} from "../../product.service";
 import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service";
 import {Subscription} from "rxjs";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-controller',
@@ -12,21 +12,33 @@ import {Subscription} from "rxjs";
 export class ProductControllerComponent implements OnInit {
   @Input() product: Product;
 
-  subscription: Subscription;
+  currentRoute: string;
   amount_product : number = 0;
+  subscription: Subscription;
 
-  constructor(private shoppingCartService: ShoppingCartService ) { }
+  NavEnd : NavigationEnd;
+
+  constructor(private shoppingCartService: ShoppingCartService, public router: Router) {}
 
   ngOnInit(): void {
+
+    if( this.shoppingCartService.findProductInShoppingCart(this.product) ){
+      this.amount_product = this.shoppingCartService.getProductAmountInCart(this.product);
+    }
 
   }
 
   addProduct(){
     this.shoppingCartService.addProductToCart(this.product);
-    this.amount_product++;
+    this.amount_product = this.shoppingCartService.findProductInShoppingCart(this.product).amount;
   }
   removeProduct(){
     this.shoppingCartService.removeProductFromCart(this.product);
+    if (this.shoppingCartService.findProductInShoppingCart(this.product)) {
+      this.amount_product = this.shoppingCartService.findProductInShoppingCart(this.product).amount;
+    }else{
+      this.amount_product = 0;
+    }
   }
 
 

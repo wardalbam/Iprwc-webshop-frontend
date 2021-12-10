@@ -1,0 +1,17 @@
+.product-editor-controller{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-flow: row;
+}
+.product-details__product-controller__total-amount-product{
+  font-size: 150%;
+  color: #292929;
+  margin: 5px;
+}
+.product-details__product-controller__edit-product-amount{
+  background-color: #0000;
+  color: #a92299;
+  border: none;
+  font-size: 200%;
+}
