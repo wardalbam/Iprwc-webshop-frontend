@@ -1,6 +1,5 @@
 .product-container{
   width: 90%;
-  background-color: cadetblue;
   max-width: 1200px;
   display: flex;
   flex-direction: row;

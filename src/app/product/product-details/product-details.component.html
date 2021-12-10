@@ -1,7 +1,25 @@
 
-<div class="product-details-">
+<div class="product-details">
   <figure>
-    <img src="" alt="">
+    <img class="product-details__image" src="{{productDetails.imagePath}}" alt="">
   </figure>
-  <h2> {{ productDetails.id }} </h2>
-</div>image
+  <div class="product-details__descriptions">
+    <h2> {{ productDetails.name }} </h2>
+    <h3>{{productDetails.price}} €</h3>
+    <div class="size-container">
+      <table>
+        <tr>
+          <td><a routerLink="{{productDetails.id+'/s'}}"></a>S</td>
+          <td><a routerLink="{{productDetails.id+'/m'}}"></a>S</td>
+          <td><a routerLink="{{productDetails.id+'/l'}}"></a>S</td>
+        </tr>
+      </table>
+    </div>
+    <p>add to shopping cart</p>
+    <app-product-controller [product]="productDetails"></app-product-controller>
+
+    <p>{{productDetails.description}}</p>
+  </div>
+
+</div>
+
