@@ -10,7 +10,6 @@ import {Subject} from "rxjs";
 export class ShoppingCartService{
   public shoppingCartAmount: Subject<number> = new Subject<number>();
   public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
-  // public shoppingCart : Subject<ShoppingCartLineModel[]> = new Subject<ShoppingCartLineModel[]>();
   constructor() {  }
 
   getAllCartLines(){
@@ -19,12 +18,22 @@ export class ShoppingCartService{
 
   addProductToCart(product : Product){
     if( this.findProductInShoppingCart(product) ){
-      this.findProductInShoppingCart(product).amount++;
+      this.findProductInShoppingCart(product).amount++ ;
     }else{
       this.shoppingCart.shoppingCartLineList.push(new ShoppingCartLineModel(product, 1));
     }
     this.shoppingCartAmount.next(this.getTotalAmountProducts());
   }
+
+  addProductToCartInBulk(product : Product, amount : number){
+    if( this.findProductInShoppingCart(product) ){
+      this.findProductInShoppingCart(product).amount += amount ;
+    }else{
+      this.shoppingCart.shoppingCartLineList.push(new ShoppingCartLineModel(product, amount));
+    }
+    this.shoppingCartAmount.next(this.getTotalAmountProducts());
+  }
+
 
   removeProductFromCart(product : Product){
     if(this.findProductInShoppingCart(product)){

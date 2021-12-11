@@ -2,21 +2,19 @@
 
   <button
     class="product-details__product-controller__edit-product-amount"
-    (click)="raiseAmount()">
+    (click)="addProduct()">
     &#43; </button>
 
   <p
-    class="product-details__product-controller__total-amount-product">
+    class="product-details__product-controller__total-amount-product"
+    [ngStyle]="{'display': amount_product === 0 ? 'none' : 'flex' }">
     {{amount_product}}</p>
 
   <button
     class="product-details__product-controller__edit-product-amount"
-    (click)="lowerAmount()">
+    (click)="removeProduct()"
+    [ngStyle]="{'display': amount_product === 0 ? 'none' : 'flex'}">
     &#8722; </button>
 
-  <button class="add-products-to-shoppingcart-btn"
-          (click)="addProduct()">
-    Add to shopping cart
-  </button>
-
 </div>
+

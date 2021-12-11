@@ -11,35 +11,30 @@ import {NavigationEnd, Router} from "@angular/router";
 })
 export class ProductControllerComponent implements OnInit {
   @Input() product: Product;
-
   currentRoute: string;
   amount_product : number = 0;
   subscription: Subscription;
 
-  NavEnd : NavigationEnd;
-
   constructor(private shoppingCartService: ShoppingCartService, public router: Router) {}
 
-  ngOnInit(): void {
-
-    if( this.shoppingCartService.findProductInShoppingCart(this.product) ){
-      this.amount_product = this.shoppingCartService.getProductAmountInCart(this.product);
-    }
-
-  }
+  ngOnInit(): void {}
 
   addProduct(){
-    this.shoppingCartService.addProductToCart(this.product);
-    this.amount_product = this.shoppingCartService.findProductInShoppingCart(this.product).amount;
-  }
-  removeProduct(){
-    this.shoppingCartService.removeProductFromCart(this.product);
-    if (this.shoppingCartService.findProductInShoppingCart(this.product)) {
-      this.amount_product = this.shoppingCartService.findProductInShoppingCart(this.product).amount;
-    }else{
+    if(this.amount_product > 0){
+      this.shoppingCartService.addProductToCartInBulk(this.product, this.amount_product);
       this.amount_product = 0;
+      // show pop-up
     }
   }
 
+  raiseAmount(){
+    this.amount_product++;
+  }
+
+  lowerAmount(){
+    if(this.amount_product > 0){
+      this.amount_product--;
+    }
+  }
 
 }

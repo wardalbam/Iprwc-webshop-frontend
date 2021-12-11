@@ -7,7 +7,6 @@ import {Product} from "../shared/Product.model";
 export class ProductService {
   productenList: Product[] = [
     new Product("1","first Product", 20,"https://5.imimg.com/data5/FJ/GS/MY-2101395/bullet-crosshatch-t-shirt-500x500.jpg", "een goed product beschrijving"),
-    new Product("1/s","small first Product", 20,"https://5.imimg.com/data5/FJ/GS/MY-2101395/bullet-crosshatch-t-shirt-500x500.jpg", "een goed product beschrijving"),
     new Product("2","D.A.R.E. T-shirt", 30,"https://upload.wikimedia.org/wikipedia/commons/4/45/Dare_tshirt.png", "een goed product beschrijving"),
     new Product("3","Metal-Kids - Crosshorns", 30,"https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw0b1bf9ab/images/5/1/5/7/515766a.jpg?sfrm=png", "Artikelnr.\n" +
       "515766\n" +
