@@ -12,7 +12,6 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
-import { CartLineControllerComponent } from './shopping-cart/cart-line-controller/cart-line-controller.component';
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
@@ -31,8 +30,7 @@ const appRoutes: Routes = [
     ShoppingCartComponent,
     ProductComponent,
     HomeComponent,
-    ProductDetailsComponent,
-    CartLineControllerComponent
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
