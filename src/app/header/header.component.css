@@ -14,9 +14,13 @@
   align-items: baseline;
   margin: 10px auto;
 }
-.navigation-container ul{
+.navigation-container ul li{
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
-.navigation-container ul li a{
+.navigation-container ul li a {
   margin: 15px;
 }
+

@@ -8,9 +8,12 @@
     <li>
       <a href="" routerLink="login">Login</a>
       <a href="#" routerLink="cart">
-        <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
-        ({{amount_products_shoppingCart}})
+        <figure>
+          <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+        </figure>
       </a>
+      <p [ngStyle]="{'color' : (amount_products_shoppingCart > 0) ? 'red': '#000'}"  >({{amount_products_shoppingCart}})</p>
+
     </li>
   </ul>
 </nav>

@@ -1,0 +1,31 @@
+.overview-container{
+  background-color: coral;
+  color: #292929;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.overview-product-image{
+  max-width: 150px;
+
+}
+mat-dialog-content{
+  max-width: 700px;
+  margin: auto;
+}
+.product-overview-body{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+.product-overview-details{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}

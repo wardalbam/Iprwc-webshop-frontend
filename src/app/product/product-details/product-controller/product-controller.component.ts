@@ -1,8 +1,12 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Product} from "../../../shared/Product.model";
 import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service";
 import {Subscription} from "rxjs";
-import {NavigationEnd, Router} from "@angular/router";
+import { Router} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ProductSummeryDialogComponent} from "../product-summery-dialog/product-summery-dialog.component";
+import {ShoppingCartLineModel} from "../../../shopping-cart/shopping-cart-line.model";
+
 
 @Component({
   selector: 'app-product-controller',
@@ -14,16 +18,20 @@ export class ProductControllerComponent implements OnInit {
   currentRoute: string;
   amount_product : number = 0;
   subscription: Subscription;
+  clickoutHandler: Function;
+  dialogRef: MatDialogRef<ProductSummeryDialogComponent>;
 
-  constructor(private shoppingCartService: ShoppingCartService, public router: Router) {}
+  constructor(private shoppingCartService: ShoppingCartService,
+              public router: Router,
+              public dialog : MatDialog) {}
 
   ngOnInit(): void {}
 
-  addProduct(){
-    if(this.amount_product > 0){
-      this.shoppingCartService.addProductToCartInBulk(this.product, this.amount_product);
-      this.amount_product = 0;
-      // show pop-up
+  ngAfterViewInit(): void {
+    document.onclick = (args: any) : void => {
+      if(args.target.tagName === 'BODY') {
+        this.dialog.closeAll();
+      }
     }
   }
 
@@ -34,6 +42,44 @@ export class ProductControllerComponent implements OnInit {
   lowerAmount(){
     if(this.amount_product > 0){
       this.amount_product--;
+    }
+  }
+
+  addProductToCart(){
+    if(this.amount_product > 0){
+      this.shoppingCartService.addProductToCartInBulk(this.product, this.amount_product);
+      // show pop-up
+      this.openDialog();
+      this.amount_product = 0;
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.clickoutHandler) {
+      this.clickoutHandler(event);
+    }
+  }
+
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(ProductSummeryDialogComponent, {
+      data : { Line :new ShoppingCartLineModel(this.product  , this.amount_product)},
+      hasBackdrop: false
+    });
+    this.dialogRef.afterOpened().subscribe(() => {
+      this.clickoutHandler = this.closeDialogFromClickout;
+    });
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.clickoutHandler = null;
+    });
+  }
+
+  closeDialogFromClickout(event: MouseEvent) {
+    const matDialogContainerEl = this.dialogRef.componentInstance.hostElement.nativeElement.parentElement;
+    const rect = matDialogContainerEl.getBoundingClientRect();
+    if(event.clientX <= rect.left || event.clientX >= rect.right ||
+      event.clientY <= rect.top || event.clientY >= rect.bottom) {
+      this.dialogRef.close();
     }
   }
 
