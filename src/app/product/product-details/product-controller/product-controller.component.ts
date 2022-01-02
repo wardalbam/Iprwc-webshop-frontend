@@ -16,7 +16,7 @@ import {ShoppingCartLineModel} from "../../../shopping-cart/shopping-cart-line.m
 export class ProductControllerComponent implements OnInit {
   @Input() product: Product;
   currentRoute: string;
-  amount_product : number = 0;
+  amount_product : number = 1;
   subscription: Subscription;
   clickoutHandler: Function;
   dialogRef: MatDialogRef<ProductSummeryDialogComponent>;
@@ -50,7 +50,7 @@ export class ProductControllerComponent implements OnInit {
       this.shoppingCartService.addProductToCartInBulk(this.product, this.amount_product);
       // show pop-up
       this.openDialog();
-      this.amount_product = 0;
+      this.amount_product = 1;
     }
   }
 
@@ -64,8 +64,11 @@ export class ProductControllerComponent implements OnInit {
   openDialog(): void {
     this.dialogRef = this.dialog.open(ProductSummeryDialogComponent, {
       data : { Line :new ShoppingCartLineModel(this.product  , this.amount_product)},
-      hasBackdrop: false
+      hasBackdrop : false
     });
+    this.dialogRef.updatePosition(
+      { left: `0`, top: `-50%` }
+    )
     this.dialogRef.afterOpened().subscribe(() => {
       this.clickoutHandler = this.closeDialogFromClickout;
     });

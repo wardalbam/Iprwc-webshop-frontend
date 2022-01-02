@@ -1,0 +1,29 @@
+<div class="order-summary">
+  <h3 class="order-summary-header"> Order summary </h3>
+  <hr>
+  <section class="order-summary-container">
+    <div class="order-summary-table">
+      <h4 class="order-amount-items order-summary-table-item">
+        {{getTotalAmountItems()}} items
+      </h4>
+      <h4 class="order-summary-table-item">{{getTotalPrice()}}€</h4>
+    </div>
+    <div class="shipping-summary order-summary-table" *ngIf="getTotalAmountItems() > 0">
+      <h4 class="order-summary-table-item">shipping</h4>
+      <h4 class="order-summary-table-item">Free</h4>
+    </div>
+    <div class="order-summary-table order-amount-items-total-after-shipping">
+      <h4 class="order-summary-table-item">Total</h4>
+      <h4 class="order-summary-table-item"> {{getTotalPrice()}}€ </h4>
+    </div>
+  </section>
+</div>
+
+<!--<a href="check-out" class="button4" style="background-color:#f14e4e" *ngIf="getTotalAmountItems() > 0">-->
+<!--  Proceed to checkout-->
+<!--</a>-->
+
+<button>Proceed to checkout</button>
+
+
+

@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: baseline;
   flex-flow: row;
+
 }
 .product-details__product-controller__total-amount-product{
   font-size: 150%;
@@ -13,5 +14,8 @@
   background-color: #0000;
   color: #a92299;
   border: none;
-  font-size: 200%;
+  font-size: 150%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
 }
+

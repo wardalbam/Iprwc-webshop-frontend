@@ -18,6 +18,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {MatNativeDateModule} from "@angular/material/core";
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     ProductDetailsComponent,
     CartLineControllerComponent,
     ProductSummeryDialogComponent,
+    OrderSummaryComponent,
   ],
   imports: [
     BrowserModule,

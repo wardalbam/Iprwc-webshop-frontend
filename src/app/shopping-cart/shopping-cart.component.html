@@ -1,13 +1,29 @@
+<div class="shopping-cart-page-container">
+  <section class="cart-lines-container">
+    <h3 class="shopping-cart-header">shopping cart</h3>
+    <hr>
+    <div class="product-container" *ngFor="let productItem of productRowList">
+      <div class="product-line-pic-name">
+        <figure>
+          <img class="product-item-image" src="{{ productItem.product.imagePath }}" alt="" style="max-width: 100px;">
+        </figure>
+        <div class="cart-line-name-price">
+          <h3 class="product-item-name" >
+            <a routerLink="{{productItem.product.id}}" style="color: #a92299">
+              {{productItem.product.name}}</a>
+            <br>
+            {{productItem.product.price}}€
+          </h3>
+        </div>
+      </div>
+      <app-cart-line-controller [product]="productItem.product"></app-cart-line-controller>
+      <h2 class="cart-line-price cart-line-price-total">{{productItem.product.price*productItem.amount}}€</h2>
+    </div>
+    <h4 class="text-muted" style="padding: 1rem" *ngIf="productRowList.length === 0">There are no more items in your cart</h4>
+  </section>
 
-
-<div class="product-container" *ngFor="let productItem of productRowList">
-
-    <figure>
-      <img class="product-item-image" src="{{ productItem.product.imagePath }}" alt="" style="max-width: 100px;">
-    </figure>
-    <a routerLink="{{productItem.product.id}}">
-      <h3 class="product-item-name" >{{productItem.product.name}}</h3>
-    </a>
-    <app-cart-line-controller [product]="productItem.product"></app-cart-line-controller>
-
+  <section class="order-summary-section">
+    <app-order-summary [shoppingCartLineList]="productRowList"></app-order-summary>
+  </section>
 </div>
+

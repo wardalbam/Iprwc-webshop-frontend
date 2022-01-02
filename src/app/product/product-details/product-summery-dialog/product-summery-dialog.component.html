@@ -1,23 +1,32 @@
-<div class="overview-container">
-  <mat-dialog-content>
-    <h3 class="product-overview-header">Product toegevoeg!</h3>
-    <div class="product-overview-body">
-      <figure>
-        <img class="overview-product-image" src="{{Line.product.imagePath}}" alt="{{Line.product.name}}">
-      </figure>
-      <div class="product-overview-details">
-        <p>{{Line.product.name}}</p>
-        <p> amount: {{Line.amount}}</p>
-        <p> total price: {{Line.amount * Line.product.price}}€ </p>
+<div class="overlay" >
+
+  <div class="overview-container">
+    <mat-dialog-content>
+      <h3 class="product-overview-header">Product added to shopping cart!</h3>
+
+      <div class="product-overview-body">
+        <div class="item-view">
+          <figure>
+            <img class="overview-product-image" src="{{Line.product.imagePath}}" alt="{{Line.product.name}}">
+          </figure>
+          <div class="product-overview-details">
+            <p>{{Line.product.name}}</p>
+            <p> amount: {{Line.amount}}</p>
+            <p> total price: {{Line.amount * Line.product.price}}€ </p>
+          </div>
+        </div>
+        <div class="shopping-cart-view">
+          <h4>There are {{getAmountProductsInCart()}} items in shopping cart.</h4>
+        </div>
       </div>
-    </div>
-    <mat-dialog-actions>
-      <button class="mat-raised-button"(click)="close()">Close</button>
-      <button class="mat-raised-button" routerLink="cart" (click)="close()">naar Cart</button>
-    </mat-dialog-actions>
-  </mat-dialog-content>
+      <mat-dialog-actions>
+        <button class="mat-raised-button"(click)="close()">Close</button>
+        <button class="mat-raised-button" routerLink="cart" (click)="close()">naar Cart</button>
 
+      </mat-dialog-actions>
+    </mat-dialog-content>
+
+  </div>
 </div>
-
 
 

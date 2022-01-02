@@ -1,0 +1,139 @@
+.order-summary-container{
+  display: flex;
+  flex-direction: column;
+
+}
+.order-summary-table{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.order-summary-table-item{
+  margin: 0.5rem;
+}
+.order-summary-header{
+  padding: 1rem;
+}
+.order-summary{
+  border: 2px solid #a92299;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  width: 100%;
+}
+.order-amount-items-total-after-shipping{
+  background-color: #e9e9e9;
+  padding: 3px;
+
+}
+
+a.button4{
+  display:inline-block;
+  padding:0.4em 1.5em;
+  margin:0 0.1em 0.1em 0;
+  border-radius:5px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align:center;
+  transition: all 0.2s;
+  margin: 1rem;
+}
+a.button4:hover{
+  border-color: rgba(255,255,255,1);
+}
+@media all and (max-width:30em){
+  a.button4{
+    display:block;
+    margin:0.2em auto;
+    }
+}
+
+/*test*/
+
+button, button::after {
+  font-size: 18px;
+  margin-top: 1rem;
+  background: linear-gradient(45deg, transparent 5%, #E31C79 5%);
+  border: 0;
+  color: #fff;
+  letter-spacing: 3px;
+  line-height: 66px;
+  /*box-shadow: 6px 6px 0px #00E6F666; add blue shadow*/
+  outline: transparent;
+  position: relative;
+}
+
+button::after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -6px 0 0);
+  --slice-2: inset(50% -6px 30% 0);
+  --slice-3: inset(10% -6px 85% 0);
+  --slice-4: inset(40% -6px 43% 0);
+  --slice-5: inset(80% -6px 5% 0);
+
+  content: 'Proceed to checkout';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 3%, #E31C79 3%, #a92299 5%, #00E6F6 5%);
+  text-shadow: -3px -3px 0px #a92299, 3px 3px 0px #E31C79;
+  clip-path: var(--slice-0);
+
+}
+
+button:hover::after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(-20px, -10px);
+  }
+  10% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, 10px);
+  }
+  20% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 10px);
+  }
+  30% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, 5px);
+  }
+  40% {
+    clip-path: var(--slice-2);
+    transform: translate(-5px, 0px);
+  }
+  50% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+  60% {
+    clip-path: var(--slice-4);
+    transform: translate(5px, 10px);
+  }
+  70% {
+    clip-path: var(--slice-2);
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    clip-path: var(--slice-5);
+    transform: translate(20px, -10px);
+  }
+  90% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    clip-path: var(--slice-1);
+    transform: translate(0);
+  }
+}

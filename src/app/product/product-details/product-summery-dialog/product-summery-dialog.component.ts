@@ -2,6 +2,7 @@ import {Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@a
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ShoppingCartLineModel} from "../../../shopping-cart/shopping-cart-line.model";
 import {Product} from "../../../shared/Product.model";
+import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service";
 
 @Component({
   selector: 'app-product-summery-dialog',
@@ -13,9 +14,9 @@ export class ProductSummeryDialogComponent implements OnInit {
 
   constructor(public hostElement: ElementRef,
               public dialogRef: MatDialogRef<ProductSummeryDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data ) {
+              @Inject(MAT_DIALOG_DATA) public data,
+              public shoppingCartService: ShoppingCartService) {
     this.Line = data.Line;
-
   }
 
   ngOnInit(): void {
@@ -23,6 +24,9 @@ export class ProductSummeryDialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+  getAmountProductsInCart(){
+    return this.shoppingCartService.getTotalAmountProducts();
   }
 
 }
