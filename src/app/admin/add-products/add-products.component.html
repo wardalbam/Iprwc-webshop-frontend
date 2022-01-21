@@ -1,0 +1,35 @@
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<h3 *ngIf="showAlert">{{alertMessage}}</h3>
+<h1 class="text-center">Add new product</h1>
+<form #loginForm="ngForm" (ngSubmit)="onUploadProduct(loginForm)" ngNativeValidate>
+  <div class="form-group">
+    <label for="nameInput">Product Name</label>
+    <input type="text"
+           name="product-name"
+           class="form-control"
+           id="nameInput"
+           aria-describedby="nameHelp"
+           placeholder="product name"
+           ngModel
+           required>
+  </div>
+  <div class="form-group">
+    <label for="price-input">Product Price</label>
+    <input name="product-price" type="text" class="form-control" id="price-input" placeholder="Price" required ngModel>
+  </div>
+  <div class="form-group">
+    <label for="description-input">Description</label>
+    <input name="product-description" type="text" class="form-control" id="description-input" placeholder="Description" required ngModel>
+  </div>
+  <div class="form-group">
+    <label for="imagePath-input">Product Image URL</label>
+    <input name="product-img-url" type="url" class="form-control" id="imagePath-input" placeholder="Image Path" required ngModel>
+  </div>
+  <input [disabled]="!loginForm.valid"
+          type="submit"
+          class="btn btn-primary"
+         value="add product">
+</form>

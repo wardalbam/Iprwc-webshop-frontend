@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductControllerComponent } from './product/product-details/product-controller/product-controller.component';
@@ -19,13 +17,20 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {MatNativeDateModule} from "@angular/material/core";
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { LoginPageComponent } from './users/login-page/login-page.component';
+import { RegisterPageComponent } from './users/register-page/register-page.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddProductsComponent } from './admin/add-products/add-products.component';
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
   { path: '', component: HomeComponent },
   { path: ':product_id', component: ProductDetailsComponent },
-  { path: 'cart/:product_id', component: ProductDetailsComponent }
-
+  { path: 'cart/:product_id', component: ProductDetailsComponent },
+  { path: 'login/login', component: LoginPageComponent },
+  { path: 'login/login/register', component: RegisterPageComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'admin/addproduct', component: AddProductsComponent },
 ];
 
 @NgModule({
@@ -41,6 +46,10 @@ const appRoutes: Routes = [
     CartLineControllerComponent,
     ProductSummeryDialogComponent,
     OrderSummaryComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    AdminComponent,
+    AddProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
     BrowserAnimationsModule,
-    // test
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

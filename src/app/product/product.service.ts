@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Product} from "../shared/Product.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,18 @@ export class ProductService {
       "Jongens & meisjes"),
     new Product("4","second Product", 30,"https://5.imimg.com/data5/FJ/GS/MY-2101395/bullet-crosshatch-t-shirt-500x500.jpg", "een goed product beschrijving")
   ]
-  constructor() { }
+
+  constructor(private http: HttpClient) {}
+
   getAllProducts(){
+    this.http.get<any>(`http://127.0.0.1:3000/product`).subscribe((data) => {
+      // this.productenList = data;
+      console.log(data);
+    });
     return this.productenList;
   }
   getProduct(id: String){
     return this.productenList.find(element => element.id === id);
   }
+
 }

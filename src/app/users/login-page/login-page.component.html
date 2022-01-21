@@ -1,0 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <h1 style="padding: 1rem;">Login</h1>
+  <div id="formContent">
+
+    <!-- Login Form -->
+    <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
+      <input type="email"
+             id="login"
+             class="fadeIn second"
+             name="email"
+             required
+             ngModel
+             email
+             placeholder="E-mail">
+      <input
+        type="text"
+        id="password"
+        class="fadeIn third"
+        name="password"
+        required
+        ngModel
+        minlength="6"
+        placeholder="password">
+
+      <input type="submit"
+             class="fadeIn fourth"
+             [disabled]="!loginForm.valid"
+             value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" routerLink="register" >Register</a>
+    </div>
+
+  </div>
+</div>
