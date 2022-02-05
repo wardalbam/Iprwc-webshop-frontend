@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AdminService} from "../admin.service";
+import {Product} from "../../shared/Product.model";
 
 @Component({
   selector: 'app-add-products',
@@ -15,9 +16,9 @@ export class AddProductsComponent implements OnInit {
   ngOnInit(): void {
   }
   onUploadProduct(form: NgForm){
-    this.adminService.uploadProduct(form.value).subscribe(
+    let product : Product =  form.value;
+    this.adminService.uploadProduct(product).subscribe(
       (data)=>{
-        // console.log(data);
         this.showAlert = true;
         this.alertMessage = "success!! you havce added new product" + form.value["name"] ;
         form.reset();

@@ -1,4 +1,3 @@
-<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -8,7 +7,7 @@
   <div class="form-group">
     <label for="nameInput">Product Name</label>
     <input type="text"
-           name="product-name"
+           name="name"
            class="form-control"
            id="nameInput"
            aria-describedby="nameHelp"
@@ -18,15 +17,15 @@
   </div>
   <div class="form-group">
     <label for="price-input">Product Price</label>
-    <input name="product-price" type="text" class="form-control" id="price-input" placeholder="Price" required ngModel>
+    <input name="price" type="text" class="form-control" id="price-input" placeholder="Price" required ngModel>
   </div>
   <div class="form-group">
     <label for="description-input">Description</label>
-    <input name="product-description" type="text" class="form-control" id="description-input" placeholder="Description" required ngModel>
+    <textarea cols="30" rows="10" name="description" type="text" class="form-control" id="description-input" placeholder="Description" required ngModel> </textarea>
   </div>
   <div class="form-group">
     <label for="imagePath-input">Product Image URL</label>
-    <input name="product-img-url" type="url" class="form-control" id="imagePath-input" placeholder="Image Path" required ngModel>
+    <input name="imagePath" type="url" class="form-control" id="imagePath-input" placeholder="Image Path"  required ngModel>
   </div>
   <input [disabled]="!loginForm.valid"
           type="submit"

@@ -24,13 +24,13 @@ import { AddProductsComponent } from './admin/add-products/add-products.componen
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductListComponent },
   { path: ':product_id', component: ProductDetailsComponent },
   { path: 'cart/:product_id', component: ProductDetailsComponent },
   { path: 'login/login', component: LoginPageComponent },
   { path: 'login/login/register', component: RegisterPageComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'admin/addproduct', component: AddProductsComponent },
+  { path: 'admin/product/add', component: AddProductsComponent },
 ];
 
 @NgModule({

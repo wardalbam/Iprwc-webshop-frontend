@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UsersService} from "../users.service";
-import {Product} from "../../shared/Product.model";
 
 @Component({
   selector: 'app-login-page',
@@ -16,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   }
   onSubmitLogin(form: NgForm){
     const user_data = form.value;
+
     this.userService.loginUser(user_data).subscribe(
       (data) => {
         this.token = data;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {ProductService} from "../product.service";
 import {Product} from "../../shared/Product.model";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-product-details',

@@ -7,7 +7,7 @@
 .product-details__product-controller__total-amount-product{
   font-size: 150%;
   color: #292929;
-  margin: 5px;
+  margin: 15px;
 }
 .product-details__product-controller__edit-product-amount{
   background-color: #0000;
@@ -16,6 +16,7 @@
   font-size: 150%;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+
 
 
 /*tst*/
