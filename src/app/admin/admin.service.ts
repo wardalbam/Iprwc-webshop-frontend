@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Product} from "../shared/Product.model";
+import {UsersService} from "../users/users.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   baseUrl = `http://127.0.0.1:8080/product/add`;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private userService : UsersService) { }
 
   // uploadProduct(productData: Product){
   //   console.log(productData);
@@ -26,6 +27,7 @@ export class AdminService {
   // }
 
   uploadProduct(productData: Product){
+
     console.log(productData);
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
@@ -36,6 +38,15 @@ export class AdminService {
     return this.http.post<any>( this.baseUrl, productData, {
       headers
     });
+  }
+
+  getAllUsers(){
+    const token = this.userService.getToken();
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+        .set('Content-Type', 'application/json')
+    }
+    return this.http.get<any>( "http://127.0.0.1:8080/api/users" , options);
   }
 
 }

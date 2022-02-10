@@ -7,15 +7,14 @@
   <div id="formContent">
 
     <!-- Login Form -->
-    <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
-      <input type="email"
-             id="login"
+    <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)" novalidate>
+      <input type="text"
+             id="username"
              class="fadeIn second"
-             name="email"
+             name="username"
              required
              ngModel
-             email
-             placeholder="E-mail">
+             placeholder="Username">
       <input
         type="text"
         id="password"
@@ -23,7 +22,7 @@
         name="password"
         required
         ngModel
-        minlength="6"
+        minlength="2"
         placeholder="password">
 
       <input type="submit"
