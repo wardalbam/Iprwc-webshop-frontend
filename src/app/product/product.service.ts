@@ -36,16 +36,17 @@ export class ProductService {
   // ]
   productenList : Product[] = [];
   constructor(private http: HttpClient) {
-    this.http.get<Product[]>(`http://127.0.0.1:8080/product/all`).subscribe(
+    this.http.get<Product[]>(`http://localhost:8080/api/prodcut/all`).subscribe(
       (data) => {
         this.productenList = data;
+        console.log(data);
       },(error) => {
         console.log(error);
       });
   }
 
   getAllProducts(){
-    return this.http.get<Product[]>(`http://127.0.0.1:8080/product/all`);
+    return this.http.get<Product[]>(`http://localhost:8080/api/product/all`);
   }
   getProduct(id: String){
     return this.productenList.find(element => element.id === id);

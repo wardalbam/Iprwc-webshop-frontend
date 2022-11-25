@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Product} from "../shared/Product.model";
 import {UsersService} from "../users/users.service";
+import { User } from '../shared/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class AdminService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.get<any>( "http://127.0.0.1:8080/api/users" , options);
+    return this.http.get<User[]>(`http://localhost:8080/api/users`);
   }
 
 }

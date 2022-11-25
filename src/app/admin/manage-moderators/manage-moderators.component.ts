@@ -16,6 +16,7 @@ export class ManageModeratorsComponent implements OnInit {
     this.adminService.getAllUsers().subscribe(
       data => {
         this.usersList = data;
+        console.log(data);
       },
       error => {
         this.errorOccurred = true;

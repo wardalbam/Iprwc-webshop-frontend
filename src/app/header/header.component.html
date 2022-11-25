@@ -8,7 +8,8 @@
   </a>
   <ul>
     <li>
-      <a routerLink="login/login">Login</a>
+      <a *ngIf="loggedIn" routerLink="login/login" (click)="onLogOut()" >Logout</a>
+      <a *ngIf="!loggedIn" routerLink="login/login">Login</a>
       <a routerLink="cart">
         <figure>
           <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">

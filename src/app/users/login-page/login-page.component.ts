@@ -25,6 +25,7 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(['admin/manage/mods'])
         this.token = data;
         form.resetForm();
+        console.log(data);
       },
     (error) => {
         this.token = null;

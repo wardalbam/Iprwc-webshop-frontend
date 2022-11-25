@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { UsersService } from 'src/app/users/users.service';
 import {Product} from "../../shared/Product.model";
 import {ProductService} from "../product.service";
 
@@ -9,9 +10,12 @@ import {ProductService} from "../product.service";
 })
 export class ProductListComponent implements OnInit {
   productenList: Product[] = [];
-  randomInt : number = this.getRandomInt(40);
-  constructor(private productService: ProductService) {
 
+  usernameTest: String;
+
+  randomInt : number = this.getRandomInt(40);
+  constructor(private productService: ProductService, private userService: UsersService) {
+    this.usernameTest = this.userService.getUsername();
   }
 
   ngOnInit(): void {
@@ -22,6 +26,7 @@ export class ProductListComponent implements OnInit {
         console.log(error);
       }
     )
+    
   }
 
   getRandomInt(max) {

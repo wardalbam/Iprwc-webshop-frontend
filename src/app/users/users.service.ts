@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {User} from "../shared/User.model";
 import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
@@ -15,9 +15,11 @@ export class UsersService {
   private REFRESH_TOKEN_KEY = 'auth-refresh-token';
   private ROLE = 'auth-role';
   private USERNAME = 'auth-username';
-  private loggedIn: boolean = false;
+  // private : boolean = false;
   private LOGGED_IN = 'isLoggedIn';
-  private TOKEN_KEY = 'auth-token';
+  private TOKEN_KEY = 'auth-token'
+
+  public loggedIn: Subject<boolean> = new Subject<boolean>();
 
   constructor(private router: Router, private http : HttpClient, private cookieService: CookieService) { }
 
@@ -41,7 +43,7 @@ export class UsersService {
   }
 
   public getToken(): string | null {
-    return this.cookieService.get(this.TOKEN_KEY)
+    return this.cookieService.get(this.TOKEN_KEY);
   }
   public saveUsername(token: string): void {
     this.cookieService.delete(this.USERNAME);
@@ -72,15 +74,17 @@ export class UsersService {
   }
 
   public setLoggedIn(): void {
-    this.loggedIn = true;
+    this.loggedIn.next(true);
     localStorage.setItem(this.LOGGED_IN, "true");
   }
   public setLoggedOut(): void {
-    this.loggedIn = false;
+    this.loggedIn.next(false)
     localStorage.clear();
     this.cookieService.deleteAll('/');
     this.cookieService.deleteAll('/admin');
-    this.router.navigate(['login']);
+    this.cookieService.delete(this.TOKEN_KEY);
+    this.router.navigate(['login/login']);
+
   }
 
   public isLoggedIn(): boolean {
