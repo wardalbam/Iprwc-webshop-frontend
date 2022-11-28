@@ -24,19 +24,4 @@
   padding: 3px;
 
 }
-.checkout-btn{
-  margin-top: 1rem;
-  padding: 2rem;
-  width: 100%;
-  color: #eee;
-  font-size: 2rem;
-  background-color: #a92299;
-  border: none;
-  border-radius: 1rem;
-  transition: 0.4s;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.checkout-btn:hover{
-  transform: scale(1.08);
-}
 

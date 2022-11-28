@@ -22,18 +22,20 @@ import { RegisterPageComponent } from './users/register-page/register-page.compo
 import { AdminComponent } from './admin/admin.component';
 import { AddProductsComponent } from './admin/add-products/add-products.component';
 import {ManageModeratorsComponent} from "./admin/manage-moderators/manage-moderators.component";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
   { path: '', component: ProductListComponent },
-  { path: ':product_id', component: ProductDetailsComponent },
+  { path: 'product/:product_id', component: ProductDetailsComponent },
   { path: 'cart/:product_id', component: ProductDetailsComponent },
-  { path: 'login/login', component: LoginPageComponent },
-  { path: 'login/login/register', component: RegisterPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/product/add', component: AddProductsComponent },
   { path: 'admin/manage/mods', component: ManageModeratorsComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({
@@ -54,6 +56,7 @@ const appRoutes: Routes = [
     AdminComponent,
     AddProductsComponent,
     ManageModeratorsComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

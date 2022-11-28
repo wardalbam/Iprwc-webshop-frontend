@@ -20,7 +20,7 @@ export class AddProductsComponent implements OnInit {
     this.adminService.uploadProduct(product).subscribe(
       (data)=>{
         this.showAlert = true;
-        this.alertMessage = "success!! you havce added new product" + form.value["name"] ;
+        this.alertMessage = "success!! you have added new product" + form.value["name"] ;
         form.reset();
       },
       (error)=>{

@@ -16,13 +16,12 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmitLogin(form: NgForm){
-
     this.userService.login(form.value).subscribe(
       (data) => {
         this.userService.saveToken(data.access_token);
         this.loginError = false;
         this.userService.setLoggedIn();
-        this.router.navigate(['admin/manage/mods'])
+        this.router.navigate(['/'])
         this.token = data;
         form.resetForm();
       },

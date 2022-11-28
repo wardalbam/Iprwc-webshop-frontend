@@ -7,7 +7,7 @@ import {UsersService} from "../users/users.service";
   providedIn: 'root'
 })
 export class AdminService {
-  baseUrl = `http://127.0.0.1:8080/product/add`;
+  baseUrl = `http://127.0.0.1:8080/api/product/add`;
   constructor(private http : HttpClient, private userService : UsersService) { }
 
   // uploadProduct(productData: Product){
@@ -28,16 +28,12 @@ export class AdminService {
 
   uploadProduct(productData: Product){
 
-    console.log(productData);
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin" : "*",
-    "Access-Control-Allow-Methods" : "POST,GET,PUT,DELETE",
-    "Access-Control-Allow-Headers" : "Authorization, Lang"
-    });
-    return this.http.post<any>( this.baseUrl, productData, {
-      headers
-    });
+    const token = this.userService.getToken();
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+        .set('Content-Type', 'application/json')
+    }
+    return this.http.post<any>( this.baseUrl, productData, options);
   }
 
   getAllUsers(){

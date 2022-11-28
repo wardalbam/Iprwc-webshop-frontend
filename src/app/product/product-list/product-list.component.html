@@ -1,7 +1,7 @@
 <div class="product-list-container">
   <ul class="product-list">
     <li class="product-item" *ngFor="let product of productenList">
-      <a routerLink="{{ product.id }}">
+      <a routerLink="{{ 'product/'+product.id }}">
         <figure>
           <img src="{{product.imagePath}}" alt="" class="product-image" (mouseover)="applyStyles()" >
         </figure>

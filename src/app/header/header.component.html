@@ -8,14 +8,14 @@
   </a>
   <ul>
     <li>
-      <a routerLink="login/login">Login</a>
+      <a routerLink="login" *ngIf="!isLoggedIn">Login</a>
+      <a *ngIf="isLoggedIn" (click)="logout()" routerLink="" >Logout</a>
       <a routerLink="cart">
         <figure>
           <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
         </figure>
       </a>
-      <p [ngStyle]="{'color' : (amount_products_shoppingCart > 0) ? 'red': '#000'}"  >({{amount_products_shoppingCart}})</p>
-
+      <p [ngStyle]="{'color' : (amount_products_shoppingCart > 0) ? 'red': '#000'}" >({{amount_products_shoppingCart}})</p>
     </li>
   </ul>
 </nav>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {User} from "../shared/User.model";
 import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
@@ -15,7 +15,7 @@ export class UsersService {
   private REFRESH_TOKEN_KEY = 'auth-refresh-token';
   private ROLE = 'auth-role';
   private USERNAME = 'auth-username';
-  private loggedIn: boolean = false;
+  public loggedIn: Subject<boolean> = new Subject<false>();
   private LOGGED_IN = 'isLoggedIn';
   private TOKEN_KEY = 'auth-token';
 
@@ -26,10 +26,29 @@ export class UsersService {
   }
 
   login(userForm){
-    const params = new HttpParams()
-      .set('username', userForm['username'])
-      .set('password', userForm['password']);
-    return this.http.post<any>( `${environment.APIEndpoint}/login`, params);
+    // const params = new HttpParams()
+    //   .set('username', userForm['username'])
+    //   .set('password', userForm['password']);
+    // return this.http.post<any>( `${environment.APIEndpoint}/login`, params);
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    let body = new URLSearchParams();
+    body.set('username', userForm['username']);
+    body.set('password', userForm['password']);
+    return this.http.post<any>(`${environment.APIEndpoint}/login`, body.toString(), options)
+
+  }
+  registerUser(registerForm){
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    let body = new URLSearchParams();
+    body.set('username', registerForm['username']);
+    body.set('name', registerForm['name']);
+    body.set('password', registerForm['password']);
+    return this.http.post<any>(`${environment.APIEndpoint}/api/user/register`, body.toString(), options);
   }
 
   public saveToken(token: string): void {
@@ -47,7 +66,11 @@ export class UsersService {
     this.cookieService.delete(this.USERNAME);
     this.cookieService.set(this.USERNAME, this.extractUsername(token), {secure: true, sameSite: 'Strict', expires: this.getExpiryTime()})
   }
+
   public getUsername(): string {
+    return this.cookieService.get(this.USERNAME);
+  }
+  public getUser(): string {
     return this.cookieService.get(this.USERNAME);
   }
 
@@ -72,25 +95,27 @@ export class UsersService {
   }
 
   public setLoggedIn(): void {
-    this.loggedIn = true;
+    this.loggedIn.next(true) ;
     localStorage.setItem(this.LOGGED_IN, "true");
   }
   public setLoggedOut(): void {
-    this.loggedIn = false;
+    this.loggedIn.next(false);
     localStorage.clear();
     this.cookieService.deleteAll('/');
     this.cookieService.deleteAll('/admin');
-    this.router.navigate(['login']);
+    this.cookieService.deleteAll('../');
+    this.cookieService.delete('auth-token');
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn(): boolean {
-    return localStorage.getItem(this.LOGGED_IN) === "true";
+    return localStorage.getItem(this.LOGGED_IN)  === "true" ;
   }
 
   public isAuthenticated(): Promise<boolean> {
     return new Promise(
       (resolve, reject) => {
-        if (this.getRole() === 'ROLE_ADMIN' || this.getRole() === 'ROLE_MOD') {
+        if (this.getRole() === 'ROLE_ADMIN' || this.getRole() === 'ROLE_MOD' || this.getRole() === 'ROLE_USER') {
           resolve(true);
         } else {
           resolve(false);
@@ -102,18 +127,13 @@ export class UsersService {
   logout() {
     this.cookieService.deleteAll('/');
     this.cookieService.deleteAll('/admin');
+
     this.setLoggedOut();
   }
 
   public getExpiryTime(): Date {
     const date = new Date();
     date.setHours(date.getHours() + 1);
-    return date;
-  }
-
-  public getExpiryTimeRefreshToken(): Date {
-    const date = new Date();
-    date.setHours(date.getHours() + 2);
     return date;
   }
 

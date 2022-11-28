@@ -6,17 +6,18 @@
   <h1 style="padding: 1rem;">Register</h1>
   <div id="formContent">
 
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="email">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="password" id="password-2" class="fadeIn third" name="login" placeholder="confirm password">
+    <!-- Register Form -->
+    <form #registerForm="ngForm"  (submit)="saveUser(registerForm)">
+      <input type="text" id="name" class="fadeIn second" name="name" placeholder="full name" ngModel>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>
+      <input type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
       <input type="submit" class="fadeIn fourth" value="Register">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" routerLink=".." >login</a>
+      <a class="underlineHover" routerLink="/login" >login</a>
     </div>
 
   </div>
