@@ -15,8 +15,7 @@
   padding: 1rem;
 }
 .order-summary{
-  border: 2px solid #a92299;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 2px solid #FAD02C;
   width: 100%;
 }
 .order-amount-items-total-after-shipping{

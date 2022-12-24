@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.order-container{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 2rem;
+    padding: 1rem;
+    max-width: 600px;
+    width: 100%;
+    background: #33365222;
+
+}
+.shippingAddress-container{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 1rem;
+    border: 1px solid #33365222;
+    border-radius: 5px;
+    padding: 1rem;
+    
+}
+.orderLine-info{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    margin: 1rem;
+    border: 1px solid #33365222;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.orderLine-image img{
+    width: 100px;
+    height: 100px;
+}
+.orderLine-info-text{
+    
+    margin: 0.5rem;
+}

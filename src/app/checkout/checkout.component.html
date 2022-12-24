@@ -2,73 +2,62 @@
 <div class="container">
   <section class="check-login" *ngIf="!isLoggedIn">
     <h4>You need to login to place an order</h4>
-    <p>Go to <a routerLink="../login/login">login</a></p>
+    <p>Go to <a routerLink="../login">login</a></p>
   </section>
 
-  <section *ngIf="isLoggedIn || guest" class="address-details">
-    <div class="col-md-8 mb-4">
-      <div class="card mb-4">
-        <div class="card-header py-3">
-          <h5 class="mb-0">Biling details</h5>
-        </div>
-        <div class="card-body">
-          <form>
-            <!-- 2 column grid layout with text inputs for the first and last names -->
-            <div class="row mb-4">
-              <div class="col">
-                <div class="form-outline">
-                  <input type="text" id="form7Example1" class="form-control" />
-                  <label class="form-label" for="form7Example1">First name</label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-outline">
-                  <input type="text" id="form7Example2" class="form-control" />
-                  <label class="form-label" for="form7Example2">Last name</label>
-                </div>
-              </div>
-            </div>
+  
+  <!-- <section *ngIf="isLoggedIn || guest" class="address-details"> -->
+  <section *ngIf="isLoggedIn">
+    <h1 style="font-size:300%;">Checkout</h1>
+    <app-order-summary [shoppingCartLineList]="productRowList"></app-order-summary>
 
-            <!-- Text input -->
-            <div class="form-outline mb-4">
-              <input type="text" id="form7Example4" class="form-control" />
-              <label class="form-label" for="form7Example4">Address</label>
-            </div>
-
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="form7Example5" class="form-control" />
-              <label class="form-label" for="form7Example5">Email</label>
-            </div>
-
-            <!-- Number input -->
-            <div class="form-outline mb-4">
-              <input type="number" id="form7Example6" class="form-control" />
-              <label class="form-label" for="form7Example6">Phone</label>
-            </div>
-
-            <!-- Message input -->
-            <div class="form-outline mb-4">
-              <textarea class="form-control" id="form7Example7" rows="4"></textarea>
-              <label class="form-label" for="form7Example7">Additional information</label>
-            </div>
-
-            <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-center mb-2">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form7Example8"
-                     checked />
-              <label class="form-check-label" for="form7Example8">
-                Create an account?
-              </label>
-            </div>
-          </form>
-        </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+      <h2>Shipping Information</h2>
+      <div class="field" tabindex="1">
+        <label for="land">
+          <i class="far fa-user"></i>Land
+        </label>
+        <select id="land" name="land">
+          <option name="land" value="Netherlands" [defaultSelected]="'Netherlands'">Netherlands</option>
+        </select>
       </div>
-    </div>
+      <div class="field" tabindex="2">
+        <label for="zipcode">
+          <i class="far fa-envelope"></i>Zipcode*
+        </label>
+        <input ngModel name="zipcode" type="text" placeholder="e.g. 1234AB" required>
+      </div>
+      <div class="field" tabindex="2">
+        <label for="addressLine">
+          <i class="far fa-envelope"></i>Street + Nr.*
+        </label>
+        <input ngModel name="addressLine" type="text" placeholder="e.g. straatnaam 1" required>
+      </div>
+      <div class="field" tabindex="2">
+        <label for="city">
+          <i class="far fa-envelope"></i>City*
+        </label>
+        <input ngModel name="city" type="text" placeholder="e.g. Leiden" required>
+      </div>
+      <div class="field" tabindex="2">
+        <label for="phone">
+          <i class="far fa-envelope"></i>Phone number
+        </label>
+        <input ngModel name="phone" type="tel" placeholder="e.g. 0612345678" required>
+      </div>
+      <!-- <div class="field" tabindex="3">
+        <label for="message">
+          <i class="far fa-edit"></i>Extra info
+        </label>
+        <textarea ngModel name="message" placeholder="type here" required></textarea>
+      </div> -->
+      <button type="submit" class="btn-primary">Bestelling plaatsen</button>
+    </form>
+    
+    
   </section>
-
-  <app-order-summary [shoppingCartLineList]="productRowList"></app-order-summary>
-  <button class="btn-primary">Payment</button>
+  
+  
 
 </div>
 

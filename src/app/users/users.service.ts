@@ -6,30 +6,43 @@ import {User} from "../shared/User.model";
 import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import { ProductListComponent } from '../product/product-list/product-list.component';
+import { Order } from '../shared/order.model';
+import { ShoppingCartLineModel } from '../shopping-cart/shopping-cart-line.model';
+import { Address } from '../shared/Address.model';
+import { UserDetails } from '../shared/UserDetails.model';
+import { UserRegisterForm } from '../shared/UserRegisterForm.model';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  public user: Observable<User>;
+  public user: Subject<User> = new Subject<false>();
   private REFRESH_TOKEN_KEY = 'auth-refresh-token';
   private ROLE = 'auth-role';
   private USERNAME = 'auth-username';
   public loggedIn: Subject<boolean> = new Subject<false>();
+
+  public UserRole: Subject<string> = new Subject<string>();
+
   private LOGGED_IN = 'isLoggedIn';
   private TOKEN_KEY = 'auth-token';
 
-  constructor(private router: Router, private http : HttpClient, private cookieService: CookieService) { }
+  constructor(private router: Router, private http : HttpClient, private cookieService: CookieService) {
+     if( this.isLoggedIn() ){
+        this.user.next(this.getUser());
+     }
+     this.UserRole.next("test");
+    
+   }
 
-  RegisterUser(user){
-    return this.http.post<any>( `${environment.APIEndpoint}/user/register`, user);
-  }
 
   login(userForm){
     // const params = new HttpParams()
     //   .set('username', userForm['username'])
     //   .set('password', userForm['password']);
     // return this.http.post<any>( `${environment.APIEndpoint}/login`, params);
+    // this.logout();
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -37,23 +50,28 @@ export class UsersService {
     let body = new URLSearchParams();
     body.set('username', userForm['username']);
     body.set('password', userForm['password']);
-    return this.http.post<any>(`${environment.APIEndpoint}/login`, body.toString(), options)
+    // this.user.next(this.getUser());
+    
+    return this.http.post<any>(`${environment.APIEndpoint}/login`, body.toString(), options);
+  }
+  registerUser(registerForm : any){
+    
+    console.log(registerForm);
+    // let body = new URLSearchParams();
+    // body.set('username', registerForm['username']);
+    // body.set('fullName', registerForm['fullName']);
+    // body.set('email', registerForm['email']);
+    // body.set('password', registerForm['password']);
+    // add 
 
+    return this.http.post<any>(`${environment.APIEndpoint}/api/user/save`, registerForm);
   }
-  registerUser(registerForm){
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
-    let body = new URLSearchParams();
-    body.set('username', registerForm['username']);
-    body.set('name', registerForm['name']);
-    body.set('password', registerForm['password']);
-    return this.http.post<any>(`${environment.APIEndpoint}/api/user/register`, body.toString(), options);
-  }
+
+ 
 
   public saveToken(token: string): void {
-    this.cookieService.deleteAll('/');
-    this.cookieService.deleteAll('/admin');
+    // this.cookieService.deleteAll('/');
+    // this.cookieService.deleteAll('/admin');
     this.cookieService.set(this.TOKEN_KEY, token, {secure: true, sameSite: 'Strict', expires: this.getExpiryTime()});
     this.saveRole(token);
     this.saveUsername(token);
@@ -77,6 +95,7 @@ export class UsersService {
   public saveRole(token: string): void {
     this.cookieService.delete(this.ROLE);
     let role: string = this.extractRole(token);
+    this.UserRole.next(role);
     this.cookieService.set(this.ROLE, role, {secure: true, sameSite: 'Strict', expires: this.getExpiryTime()});
   }
 
@@ -90,20 +109,20 @@ export class UsersService {
     return decoded['sub'];
   }
 
+
   public getRole(): string | null {
     return this.cookieService.get(this.ROLE);
   }
 
   public setLoggedIn(): void {
-    this.loggedIn.next(true) ;
+    this.loggedIn.next(true);
     localStorage.setItem(this.LOGGED_IN, "true");
   }
   public setLoggedOut(): void {
     this.loggedIn.next(false);
-    localStorage.clear();
-    this.cookieService.deleteAll('/');
-    this.cookieService.deleteAll('/admin');
-    this.cookieService.deleteAll('../');
+    localStorage.setItem(this.LOGGED_IN, "false");
+    this.cookieService.delete('auth-username');
+    this.cookieService.delete('auth-role');
     this.cookieService.delete('auth-token');
     this.router.navigate(['/login']);
   }
@@ -124,10 +143,8 @@ export class UsersService {
     );
   }
 
+ 
   logout() {
-    this.cookieService.deleteAll('/');
-    this.cookieService.deleteAll('/admin');
-
     this.setLoggedOut();
   }
 
@@ -167,4 +184,38 @@ export class UsersService {
     }
     return this.http.delete(`${environment.APIEndpoint}/api/v1/users/${id}`, options);
   }
+  public getUserDetails() {
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken())
+    }
+    return this.http.get<UserDetails>(`${environment.APIEndpoint}/api/user/details`, options);
+  }
+
+  public getUserAddress(addressId : string) {
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken()),
+      params : new HttpParams().set("id", addressId)
+    };
+    return this.http.get<Address>(`${environment.APIEndpoint}/api/address/${addressId}`, options);
+  }
+
+  public placeOrder(order : { productLineList: ShoppingCartLineModel[] , address : Address}){
+    
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken())
+    };
+    return this.http.post(`${environment.APIEndpoint}/order`, 
+    order,
+    options
+    );
+
+  }
+
+  public getOrderListByUser(){
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken())
+    }
+    return this.http.get<any[]>(`${environment.APIEndpoint}/order/all`, options);
+  }
+
 }

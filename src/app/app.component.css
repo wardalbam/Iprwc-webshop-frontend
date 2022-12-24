@@ -6,3 +6,9 @@ p {
   color: blue;
 }
 
+
+
+@import url("https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap");
+* {
+  font-family: "Saira Semi Condensed", sans-serif !important;
+}

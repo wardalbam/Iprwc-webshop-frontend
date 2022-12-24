@@ -1,0 +1,53 @@
+
+<h1>Orders ({{ orders.length }})</h1>
+<div>
+    <div class="order-container" *ngFor="let order of orders"> 
+        <div class="orderLine-container">
+            <div class="orderLine" *ngFor="let orderLine of order['orederLines']">
+                <div class="orderLine-info">
+                    <div class="orderLine-image">
+                        <img src="{{ orderLine['product_image'] }}" alt="{{ orderLine['product_name'] }}">
+                    </div>
+                    <div class="orderLine-info-text">
+                        <p> <strong>{{ orderLine["product_name"] }} </strong> </p>
+                        <p> quantity: <strong>{{ orderLine["amount"] }} </strong> </p>
+                        <p>  <strong>{{ orderLine["product_price"] }}€   </strong>  </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shippingAddress-container">
+            <p>Shipping Address:</p>
+            <div>
+                <p> {{ order["shippingAddress"]["addressLine"] }}</p>
+                <p> {{ order["shippingAddress"]["zipcode"] }} - {{ order["shippingAddress"]["city"] }}</p>
+                <p> {{ order["shippingAddress"]["land"] }}</p>
+                <p> {{ order["shippingAddress"]["phone"] }} </p>
+            </div>
+        </div>
+        <div class="order-details">
+            <p>User id: {{order["userId"]}}</p>
+            <!-- show order["orderDate"] as substring from first character untill the first letter T-->
+            <p> Date created: <strong>{{ order["orderDate"].substring(0, order["orderDate"].indexOf('T')) }} </strong>  </p>
+            <p> Order id: <strong> {{order["id"]}} </strong> </p>
+            <p> Total price: <strong>{{ order["totalPrice"] }}€ </strong>  </p>
+            <div>
+                <p [ngStyle]="{'color' : (order['orderStatus']=='PROCESSING') ? '#FF5733': 'green'}"> <strong>{{ order["orderStatus"] }} </strong> </p>
+            </div>
+        </div>
+        
+        <!-- add action buttons to change status with submit button to save changes -->
+        <div class="order-actions" *ngIf="userRole === 'ROLE_ADMIN'">
+            <i>update Status</i>
+            <select name="orderStatus" #selectstatus (change)="onSelected(selectstatus.value)" [ngModel]="order['orderStatus']">
+                <option value="DELIVERED">DELIVERED</option>
+                <option value="PROCESSING">PROCESSING</option>
+                <option value="SHIPPED">SHIPPED</option>
+            </select>
+            <!-- create submit button and enable it only when user selected a status -->
+            <button  class="button-3" (click)="updateOrderStatus(order['id'], selectedStatus)" [disabled]="order['orderStatus'] === selectedStatus || selectedStatus == ''" >Save</button>
+        </div> 
+        
+    </div>
+    
+</div>

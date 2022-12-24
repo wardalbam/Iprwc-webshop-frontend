@@ -7,13 +7,19 @@
   <div id="formContent">
 
     <!-- Register Form -->
-    <form #registerForm="ngForm"  (submit)="saveUser(registerForm)">
-      <input type="text" id="name" class="fadeIn second" name="name" placeholder="full name" ngModel>
-      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>
-      <input type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
-      <input type="submit" class="fadeIn fourth" value="Register">
+    <form #registerForm="ngForm"  (submit)="saveUser(registerForm)" ngNativeValidate>
+      
+      <input type="text" id="fullname" class="fadeIn second" name="fullname" placeholder="full name" ngModel required>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel required>
+      <div *ngIf="usernameExistsError" class="alert alert-warning">Username is taken!</div>
+      <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email" ngModel required>
+      <input #pw1 type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>
+      <input #pw2 type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
+      <div *ngIf="pw1.value !== pw2.value" class="alert alert-danger">Passwords do not match</div>
+      <input type="submit" class="fadeIn fourth" value="Register" [disabled]="pw1.value !== pw2.value">
+      
     </form>
+    <div *ngIf="unknownError" class="alert alert-warning">Unkown error error occurred pleas try again later!</div>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">

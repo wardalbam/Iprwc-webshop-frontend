@@ -8,23 +8,24 @@
           <img class="product-item-image" src="{{ productItem.product.imagePath }}" alt="" style="max-width: 100px;">
         </figure>
         <div class="cart-line-name-price">
-          <h3 class="product-item-name" >
-            <a routerLink="{{productItem.product.id}}" style="color: #a92299">
+            <a class="product-item-name" routerLink="{{productItem.product.id}}">
               {{productItem.product.name}}</a>
             <br>
-            {{productItem.product.price}}€
-          </h3>
+            <p class="product-item-price">{{productItem.product.price.toFixed(2) }}€</p>
         </div>
       </div>
-      <app-cart-line-controller [product]="productItem.product"></app-cart-line-controller>
-      <h2 class="cart-line-price cart-line-price-total">{{productItem.product.price*productItem.amount}}€</h2>
+      <div>
+        <h2 class="cart-line-price cart-line-price-total">{{(productItem.product.price*productItem.amount).toFixed(2) }}€</h2>
+        <app-cart-line-controller [product]="productItem.product"></app-cart-line-controller>
+
+      </div>
     </div>
     <h4 class="text-muted" style="padding: 1rem" *ngIf="productRowList.length === 0">There are no more items in your cart</h4>
   </section>
 
   <section class="order-summary-section">
     <app-order-summary [shoppingCartLineList]="productRowList"></app-order-summary>
-    <button class="checkout-btn" routerLink="/checkout">Proceed to checkout</button>
+    <button [disabled]="totalAmountProducts <= 0" class="checkout-btn" routerLink="/checkout">Proceed to checkout</button>
   </section>
 </div>
 

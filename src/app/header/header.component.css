@@ -1,26 +1,76 @@
-.shopping-cart{
-  max-width: 40px;
-}
-.logo{
-  max-width: 300px;
-  margin: 5rem;
-}
-.navigation-container{
-  display: flex;
-  -ms-flex-direction: row;
+
+/* make the header 100% width and the content inside max 900px width */
+
+header {
   width: 100%;
-  justify-content: space-between;
-  max-width: 1000px;
-  align-items: baseline;
-  margin: 10px auto;
+  
 }
-.navigation-container ul li{
-  list-style: none;
+
+
+/* make all the nav items on the same base line */
+nav {
+  max-width: 900px;
+  margin: 25px auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* make the logo in the top center of the header and widht of 150px. The ul items to the right side of the header */
+.logo { 
+  display: block;
+  margin-right: auto;
+  width: 150px;
+}
+
+
+/*  ul items has to be next to each others as a row*/
+ul {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
 }
-.navigation-container ul li a {
-  margin: 15px;
+
+
+/*  li items has to be next to each others as a row with 10px margin*/
+li {
+  margin: 0 10px;
 }
+
+
+/* shopping cart icon has to have a width of 50px max */
+.shopping-cart {
+  width: 40px;
+}
+
+/* make items in cart class row no space between items */
+.cart-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cart-container figure{
+  margin: 0;
+}
+
+/* surround text with red circle */
+.shopping-cart-quantity-text{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0;
+  height: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription} from "rxjs";
+import {generate, Subscription} from "rxjs";
 import {UsersService} from "../users/users.service";
-import {User} from "../shared/User.model";
-import {FormBuilder, NgForm} from "@angular/forms";
+import {Form, FormBuilder, NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
 import {ShoppingCartLineModel} from "../shopping-cart/shopping-cart-line.model";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import { Order } from '../shared/order.model';
+import { ShoppingCartModel } from '../shopping-cart/shopping-cart-model';
+import { Address } from '../shared/Address.model';
 
 @Component({
   selector: 'app-checkout',
@@ -14,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+
 
   productRowList : ShoppingCartLineModel[];
   totalAmountProducts : number;
@@ -23,6 +26,9 @@ export class CheckoutComponent implements OnInit {
   token:string;
   loginError: boolean;
   guest : boolean = false;
+  OrderPlaced : boolean = false;
+  PlacedOrder : Order;
+
   constructor(private userService : UsersService, private router : Router, public shoppingCartService: ShoppingCartService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -37,28 +43,31 @@ export class CheckoutComponent implements OnInit {
     this.productRowList = this.shoppingCartService.getAllCartLines().shoppingCartLineList;
   }
 
-  onSubmitLogin(form: NgForm){
-    this.userService.login(form.value).subscribe(
-      (data) => {
-        this.userService.saveToken(data.access_token);
-        this.loginError = false;
-        this.userService.setLoggedIn();
-        this.router.navigate(['/'])
-        this.token = data;
-        form.resetForm();
-      },
-      (error) => {
-        this.token = null;
+
+  onSubmit( shippingaddress: NgForm ) {
+    
+    const productLineList  = this.shoppingCartService.getAllCartLines().shoppingCartLineList;
+    const address = shippingaddress.value;
+    const order = {
+      productLineList,
+      address
+    };
+    
+    console.log(order);
+    this.userService.placeOrder(order).subscribe(
+      data => {
+        this.PlacedOrder = data;
+        this.OrderPlaced = true;
+        this.shoppingCartService.clearCart();
+        this.router.navigate(["./order-success"]);
+      }, error => {
+        console.log(error);
       }
     )
   }
 
-
-  onSubmit(): void {
-    // Process checkout data here
-    this.shoppingCartService.shoppingCart.shoppingCartLineList = [];
-    console.warn('Your order has been submitted');
-
+  resetFormValue(myForm: NgForm){
+    myForm.resetForm();
   }
 
 }

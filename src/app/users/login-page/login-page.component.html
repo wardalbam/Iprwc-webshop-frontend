@@ -29,6 +29,9 @@
              class="fadeIn fourth"
              [disabled]="!loginForm.valid"
              value="Log In">
+      <!-- show error if loginerror -->
+      <div *ngIf="loginError" class="alert alert-warning">Incorrect username or password! </div>
+
     </form>
 
     <!-- Remind Passowrd -->

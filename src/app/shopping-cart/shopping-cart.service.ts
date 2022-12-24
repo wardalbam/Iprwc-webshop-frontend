@@ -3,14 +3,22 @@ import {ShoppingCartModel} from "./shopping-cart-model";
 import {Product} from "../shared/Product.model";
 import {ShoppingCartLineModel} from "./shopping-cart-line.model";
 import {Subject} from "rxjs";
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartService{
+export class ShoppingCartService {
   public shoppingCartAmount: Subject<number> = new Subject<number>();
   public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
-  constructor() {  }
+
+  constructor(private cookieService: CookieService) {
+    if(this.cookieService.get("ShoppingCart")){
+    this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
+    }else{
+    this.cookieService.set("ShoppingCart", JSON.stringify( new ShoppingCartModel([]) ) );
+    }
+   }
 
   getAllCartLines(){
     return this.shoppingCart;
@@ -23,6 +31,7 @@ export class ShoppingCartService{
       this.shoppingCart.shoppingCartLineList.push(new ShoppingCartLineModel(product, 1));
     }
     this.shoppingCartAmount.next(this.getTotalAmountProducts());
+    this.syncCartWithCookie();
   }
 
   addProductToCartInBulk(product : Product, amount : number){
@@ -32,6 +41,7 @@ export class ShoppingCartService{
       this.shoppingCart.shoppingCartLineList.push(new ShoppingCartLineModel(product, amount));
     }
     this.shoppingCartAmount.next(this.getTotalAmountProducts());
+    this.syncCartWithCookie();
   }
 
 
@@ -44,9 +54,11 @@ export class ShoppingCartService{
       }
     }
     this.shoppingCartAmount.next(this.getTotalAmountProducts());
+    this.syncCartWithCookie();
   }
 
   getTotalAmountProducts(){
+    this.syncCartWithCookie();
     let counter: number = 0;
     this.shoppingCart.shoppingCartLineList.forEach(shoppingCartLine => {
       counter += shoppingCartLine.amount;
@@ -55,17 +67,29 @@ export class ShoppingCartService{
   }
 
   public findProductInShoppingCart(product : Product){
-    if( this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product) !== null ){
-      return this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product);
+    if( this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product.id === product.id) !== null ){
+      return this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product.id === product.id);
     }
   }
 
   public getProductAmountInCart(product : Product){
+    this.syncCartWithCookie();
     if(this.findProductInShoppingCart(product)){
+      // return JSON.parse(this.cookieService.get("ShoppingCart")).shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount;
       return this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount;
     }else{
       return 0;
     }
+  }
+
+  public syncCartWithCookie(){
+    this.cookieService.set("ShoppingCart", JSON.stringify(this.shoppingCart));
+  }
+
+  public clearCart(){
+    this.shoppingCart = new ShoppingCartModel([]);
+    this.shoppingCartAmount.next(this.getTotalAmountProducts());
+    this.syncCartWithCookie();
   }
 
 }

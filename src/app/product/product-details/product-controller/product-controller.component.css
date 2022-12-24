@@ -3,19 +3,22 @@
   flex-direction: row;
   align-items: baseline;
   flex-flow: row;
+
 }
 .product-details__product-controller__total-amount-product{
   font-size: 150%;
   color: #292929;
-  margin: 15px;
+  margin: 5px;
 }
 .product-details__product-controller__edit-product-amount{
   background-color: #0000;
-  color: #a92299;
+  color: #bfa025;
   border: none;
   font-size: 150%;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
+
 }
+
 
 
 
@@ -23,23 +26,20 @@
 a{
   position: relative;
   display: inline-block;
-  padding: 15px 23px;
-  color: #a92299;
+  padding: 10px 20px;
+  background-color: #FAD02C !important;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
   letter-spacing: 4px;
   overflow: hidden;
   margin-left: 3rem;
+  color: #333652;
 }
 a:hover{
   cursor: pointer;
-  background: #a92299;
-  color: #050801;
-  box-shadow: 0 0 5px #a92299,
-  0 0 25px #a92299,
-  0 0 50px #a92299,
-  0 0 200px #a92299;
+  background: #333652 !important;
+  color: #FAD02C !important;
 }
 a:nth-child(1){
   filter: hue-rotate(270deg);

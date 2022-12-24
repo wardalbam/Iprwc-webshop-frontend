@@ -1,11 +1,14 @@
-
+*{
+  margin: 0;
+  padding: 0;
+}
 a{
   text-decoration: none;
 }
 .product-image{
-  max-width: 170px;
-  max-height: 350px;
+  max-width: 200px;
   transition: 0.5s;
+  padding: 10px;
 }
 .product-image:hover{
   transform: scale(1.07);
@@ -17,6 +20,10 @@ a{
   text-align: center;
   max-width: 200px;
 }
+.prodduct-name{
+  font-size: 1rem;
+  color: #333652;
+}
 .product-list{
   width: 90%;
   margin: auto;
@@ -25,4 +32,7 @@ a{
   list-style: none;
   flex-wrap: wrap;
   max-width: 1000px;
+}
+.product-pice{
+  color: #333652;
 }

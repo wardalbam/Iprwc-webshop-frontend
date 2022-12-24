@@ -46,9 +46,9 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #56baed;
+  background-color: #FAD02C;
   border: none;
-  color: white;
+  color: #333652;
   padding: 15px 80px;
   text-align: center;
   text-decoration: none;
@@ -67,8 +67,9 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
+  background-color: #333652;
+  color: #FAD02C;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -79,7 +80,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password] , input[type=email]{
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -102,10 +103,10 @@ input[type=text], input[type=password] {
 
 input[type=text]:focus , input[type=password]:focus{
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid #FAD02C;
 }
 
-input[type=text]::placeholder, input[type=password]::placeholder {
+input[type=text]::placeholder, input[type=password]::placeholder, input[type=email]::placeholder {
   color: #cccccc;
 }
 
@@ -192,6 +193,7 @@ input[type=text]::placeholder, input[type=password]::placeholder {
   -moz-animation-delay: 0.4s;
   animation-delay: 0.4s;
 }
+
 
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {

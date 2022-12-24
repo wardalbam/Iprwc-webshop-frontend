@@ -1,4 +1,23 @@
+<h1 class="header">Manage Moderators</h1>
+
 <p *ngIf="errorOccurred">{{errMessage}}</p>
-<ul *ngFor="let user of usersList">
-  <li>{{user.name}}</li>
-</ul>
+<div class="users-container">
+  <ul class="users">
+    <li class="user" *ngFor="let user of allUsersList" >
+      <div class="user-info">
+        <p class="user-name">{{user.name}}</p>
+        <p class="user-username"> {{user.username}} </p>
+        <p class="user-email"> {{user.email}} </p>
+        <div *ngFor="let role of user.roles">
+          <p >{{role.name}}</p>
+        </div>
+        <div class="user-action-button" (click)="removeModerator(user)">
+          <i class="fas fa-trash-alt"></i>
+          <button  class="user-action-button-text button-24"> Remove </button>
+        </div>
+      
+      </div>
+    </li>
+  </ul>
+</div>
+

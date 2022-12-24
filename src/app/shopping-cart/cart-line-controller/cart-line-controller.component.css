@@ -8,14 +8,14 @@
 .product-details__product-controller__total-amount-product{
   font-size: 150%;
   color: #292929;
-  margin: 15px;
+  margin: 5px;
 }
 .product-details__product-controller__edit-product-amount{
   background-color: #0000;
-  color: #a92299;
+  color: #bfa025;
   border: none;
   font-size: 150%;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
 
 }
 

@@ -1,3 +1,9 @@
+import { Address } from "./Address.model";
+
 export class User{
-  constructor(name:string, password:string) {}
+  constructor(
+    name:string, 
+    address:Address,
+    email:String
+    ) {}
 }

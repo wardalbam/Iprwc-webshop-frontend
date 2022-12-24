@@ -1,4 +1,4 @@
-<nav class="navigation-container">
+<nav class="navigation-container" >
   <a href="" routerLink="">
     <div class="logo-container">
       <figure>
@@ -7,15 +7,34 @@
     </div>
   </a>
   <ul>
-    <li>
-      <a routerLink="login" *ngIf="!isLoggedIn">Login</a>
-      <a *ngIf="isLoggedIn" (click)="logout()" routerLink="" >Logout</a>
-      <a routerLink="cart">
-        <figure>
-          <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
-        </figure>
-      </a>
-      <p [ngStyle]="{'color' : (amount_products_shoppingCart > 0) ? 'red': '#000'}" >({{amount_products_shoppingCart}})</p>
-    </li>
+      
+      <li *ngIf="userRole == 'ROLE_ADMIN' && isLoggedIn">
+        <a   routerLink="admin/manage/mods"> Users </a>
+
+      </li>
+      <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
+        <a  routerLink="admin/manage/products"> Products </a>
+      </li>
+      <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
+        <a href="admin/orders"> Orders </a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a  routerLink="admin"> Profile </a> 
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a routerLink="login" >Login</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a  (click)="logout()" routerLink="" >Logout</a>
+      </li>
+      <li class="cart-container">
+        <a routerLink="cart">
+          <figure>
+            <img class="shopping-cart" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+          </figure>
+        </a>
+        <p class="shopping-cart-quantity-text" *ngIf="amount_products_shoppingCart > 0"  [ngStyle]="{'color' : (amount_products_shoppingCart > 0) ? '#aA202C': '#000'}" > {{amount_products_shoppingCart}} </p>
+      </li>
+    
   </ul>
 </nav>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductControllerComponent } from './product/product-details/product-controller/product-controller.component';
@@ -23,6 +23,10 @@ import { AdminComponent } from './admin/admin.component';
 import { AddProductsComponent } from './admin/add-products/add-products.component';
 import {ManageModeratorsComponent} from "./admin/manage-moderators/manage-moderators.component";
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersOverviewComponent } from './admin/orders-overview/orders-overview.component';
+import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
+// import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+
 
 
 const appRoutes: Routes = [
@@ -36,6 +40,11 @@ const appRoutes: Routes = [
   { path: 'admin/product/add', component: AddProductsComponent },
   { path: 'admin/manage/mods', component: ManageModeratorsComponent },
   { path: 'checkout', component: CheckoutComponent },
+  {path: 'order-success', component: OrderSuccessComponent},
+  {path: 'admin/orders', component: OrdersOverviewComponent}
+  // allow accsess to route admin only for user with role "ROLE_ADMIN" 
+  
+
 ];
 
 @NgModule({
@@ -56,7 +65,9 @@ const appRoutes: Routes = [
     AdminComponent,
     AddProductsComponent,
     ManageModeratorsComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersOverviewComponent,
+    OrderSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,10 +77,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+    // PasswordStrengthMeterModule
   ],
   providers: [],
   bootstrap: [AppComponent],
