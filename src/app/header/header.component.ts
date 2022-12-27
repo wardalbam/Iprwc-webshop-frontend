@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private LOGGED_IN = 'isLoggedIn';
   private USERNAME = 'auth-username';
   constructor( private shoppingCartService: ShoppingCartService, private userService:UsersService, private cookieService:CookieService) {
-    this.shoppingCartService.syncCartWithCookie();
+    // this.shoppingCartService.syncCartWithCookie();
     this.amount_products_shoppingCart =  this.shoppingCartService.getTotalAmountProducts();
    
   }
@@ -50,10 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getUserNameSub =  this.userService.user.subscribe((username) => {
       this.userName = username;
     }
-    );
-
-
-    
+    );    
   }
 
   ngOnDestroy(): void {

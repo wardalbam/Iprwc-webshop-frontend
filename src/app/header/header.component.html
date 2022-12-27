@@ -1,5 +1,5 @@
 <nav class="navigation-container" >
-  <a href="" routerLink="">
+  <a href="" routerLink="" >
     <div class="logo-container">
       <figure>
         <img class="logo" src="../../assets/img/angular-guitar-shop-logo.jpg" alt="logo">
@@ -13,7 +13,7 @@
 
       </li>
       <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
-        <a  routerLink="admin/manage/products"> Products </a>
+        <a  routerLink="admin/manage/product"> Products </a>
       </li>
       <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
         <a href="admin/orders"> Orders </a>

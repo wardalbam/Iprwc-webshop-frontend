@@ -49,11 +49,5 @@ export class AdminComponent implements OnInit {
     });
 
   }
-  // changeEmail(){
-  //   this.userService.changeEmail(this.userDetails.email).subscribe(
-  //     data => {
-  //       console.log(data);
-  //   });
-  // }
-
+  
 }

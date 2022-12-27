@@ -6,7 +6,7 @@ import {Product} from "../../shared/Product.model";
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
-  styleUrls: ['./add-products.component.css']
+  styleUrls: ['./add-products.component.scss']
 })
 export class AddProductsComponent implements OnInit {
   showAlert = false;
@@ -16,14 +16,14 @@ export class AddProductsComponent implements OnInit {
   ngOnInit(): void {
   }
   onUploadProduct(form: NgForm){
-    let product : Product =  form.value;
-    this.adminService.uploadProduct(product).subscribe(
-      (data)=>{
+    console.log(form);
+    this.adminService.uploadProduct(form).subscribe(
+      data =>{
         this.showAlert = true;
         this.alertMessage = "success!! you have added new product" + form.value["name"] ;
         form.reset();
       },
-      (error)=>{
+      error =>{
         this.showAlert = true;
         this.alertMessage= error.message;
       }

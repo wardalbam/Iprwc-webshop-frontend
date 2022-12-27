@@ -1,34 +1,32 @@
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<h3 *ngIf="showAlert">{{alertMessage}}</h3>
-<h1 class="text-center">Add new product</h1>
-<form #loginForm="ngForm" (ngSubmit)="onUploadProduct(loginForm)" ngNativeValidate>
+<!-- add go back button to manage products -->
+<button class="btn btn-primary go-back-btn" routerLink="/admin/manage/product">Go Back</button>
+<!-- form for adding new product -->
+<form #myForm="ngForm" (submit)="onUploadProduct(myForm.value)" ngNativeValidate>
+  <h2>Add new product</h2>
   <div class="form-group">
-    <label for="nameInput">Product Name</label>
-    <input type="text"
-           name="name"
-           class="form-control"
-           id="nameInput"
-           aria-describedby="nameHelp"
-           placeholder="product name"
-           ngModel
-           required>
+    <label for="name">Name</label>
+    <input name="name" type="text" class="form-control" id="name" placeholder="Enter name" ngModel required>
   </div>
   <div class="form-group">
-    <label for="price-input">Product Price</label>
-    <input name="price" type="text" class="form-control" id="price-input" placeholder="Price" required ngModel>
+    <label for="price">Price</label>
+    <input name="price" type="number" class="form-control" id="price" placeholder="Enter price" ngModel required>
+  </div>
+  <!-- description as texterea -->
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description"  class="form-control" id="description" rows="8" ngModel required></textarea>
   </div>
   <div class="form-group">
-    <label for="description-input">Description</label>
-    <textarea cols="30" rows="10" name="description" type="text" class="form-control" id="description-input" placeholder="Description" required ngModel> </textarea>
+    <label for="imagePath">Image Path</label>
+    <input name="ImagePath" type="text" class="form-control" id="ImagePath" placeholder="Enter image path" ngModel required>
   </div>
+  <!-- select product status active or hidden -->
   <div class="form-group">
-    <label for="imagePath-input">Product Image URL</label>
-    <input name="imagePath" type="url" class="form-control" id="imagePath-input" placeholder="Image Path"  required ngModel>
+    <label for="status">Status</label>
+    <select name="status" class="form-control" id="status" ngModel required>
+      <option value="active">Active</option>
+      <option value="hidden">Hidden</option>
+    </select>
   </div>
-  <input [disabled]="!loginForm.valid"
-          type="submit"
-          class="btn btn-primary"
-         value="add product">
+  <button type="submit" class="btn btn-primary submit-btn" [disabled]="!myForm.valid" >Submit</button>
 </form>

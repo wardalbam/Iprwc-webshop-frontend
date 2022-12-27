@@ -25,7 +25,12 @@ export class ManageModeratorsComponent implements OnInit {
         console.log("Error: " + error.message);
       }
     );
-  };
+  }
+
+  addNewManager(){
+
+  }
+
 
   
 

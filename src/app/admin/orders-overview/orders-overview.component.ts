@@ -25,6 +25,7 @@ export class OrdersOverviewComponent implements OnInit {
     this.userService.getOrderListByUser().subscribe(
       data => {
         console.log(data);
+        // order the orders by order.orderDate 
         this.orders = data;
     });
 

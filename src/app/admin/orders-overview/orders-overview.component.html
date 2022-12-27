@@ -1,6 +1,6 @@
 
 <h1>Orders ({{ orders.length }})</h1>
-<div>
+<div class="orders"  *ngIf="userRole === 'ROLE_USER'">
     <div class="order-container" *ngFor="let order of orders"> 
         <div class="orderLine-container">
             <div class="orderLine" *ngFor="let orderLine of order['orederLines']">
@@ -27,16 +27,13 @@
         </div>
         <div class="order-details">
             <p>User id: {{order["userId"]}}</p>
-            <!-- show order["orderDate"] as substring from first character untill the first letter T-->
-            <p> Date created: <strong>{{ order["orderDate"].substring(0, order["orderDate"].indexOf('T')) }} </strong>  </p>
+            <p> Date created: <strong>{{ order["orderDate"].substring(0, order["orderDate"].indexOf('T')) }} </strong> - <strong> {{ order["orderDate"].substring( order["orderDate"].indexOf('T')+1, order["orderDate"].indexOf('.')) }} </strong>  </p>
             <p> Order id: <strong> {{order["id"]}} </strong> </p>
             <p> Total price: <strong>{{ order["totalPrice"] }}€ </strong>  </p>
             <div>
                 <p [ngStyle]="{'color' : (order['orderStatus']=='PROCESSING') ? '#FF5733': 'green'}"> <strong>{{ order["orderStatus"] }} </strong> </p>
             </div>
         </div>
-        
-        <!-- add action buttons to change status with submit button to save changes -->
         <div class="order-actions" *ngIf="userRole === 'ROLE_ADMIN'">
             <i>update Status</i>
             <select name="orderStatus" #selectstatus (change)="onSelected(selectstatus.value)" [ngModel]="order['orderStatus']">
@@ -44,10 +41,47 @@
                 <option value="PROCESSING">PROCESSING</option>
                 <option value="SHIPPED">SHIPPED</option>
             </select>
-            <!-- create submit button and enable it only when user selected a status -->
             <button  class="button-3" (click)="updateOrderStatus(order['id'], selectedStatus)" [disabled]="order['orderStatus'] === selectedStatus || selectedStatus == ''" >Save</button>
         </div> 
         
     </div>
     
 </div>
+
+
+<!-- select to filter orders by status -->
+<div class="filter-container">
+    <select name="orderStatus" >
+        <option value="DELIVERED">DELIVERED</option>
+        <option value="PROCESSING">PROCESSING</option>
+        <option value="SHIPPED">SHIPPED</option>
+    </select>
+</div>
+
+<table  *ngIf="userRole === 'ROLE_ADMIN' || userRole === 'ROLE_MANAGER'">
+    <tr>
+        <th>Order Id</th>
+        <th>Usename</th>
+        <th>Order Date</th>
+        <th>Order Status</th>
+        <th>Order Total</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.username }}</td>
+        <td><strong>{{ order["orderDate"].substring(0, order["orderDate"].indexOf('T')) }} </strong> | <strong> {{ order["orderDate"].substring( order["orderDate"].indexOf('T')+1, order["orderDate"].indexOf('.')) }} </strong> </td>
+        <td>{{ order.orderStatus }}</td>
+        <td>{{ order.totalPrice }}</td>
+        <td>
+            <div class="order-actions" *ngIf="userRole === 'ROLE_ADMIN' || userRole === 'ROLE_MANAGER'">
+                <select name="orderStatus" #selectstatus (change)="onSelected(selectstatus.value)" [ngModel]="order['orderStatus']">
+                    <option value="DELIVERED">DELIVERED</option>
+                    <option value="PROCESSING">PROCESSING</option>
+                    <option value="SHIPPED">SHIPPED</option>
+                </select>
+                <button  class="button-3" (click)="updateOrderStatus(order['id'], selectedStatus)" [disabled]="order['orderStatus'] === selectstatus.value || selectstatus.value == ''" >Save</button>
+            </div> 
+        </td>
+    </tr>
+</table>

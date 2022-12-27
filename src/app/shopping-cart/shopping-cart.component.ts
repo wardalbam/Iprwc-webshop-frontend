@@ -10,11 +10,13 @@ import {ShoppingCartService} from "./shopping-cart.service";
 export class ShoppingCartComponent implements OnInit {
   productRowList : ShoppingCartLineModel[];
   totalAmountProducts : number;
-  constructor(public shoppingCartService: ShoppingCartService) { }
-
-  ngOnInit(): void {
+  constructor(public shoppingCartService: ShoppingCartService) {
     this.totalAmountProducts = this.shoppingCartService.getTotalAmountProducts();
     this.productRowList = this.shoppingCartService.getAllCartLines().shoppingCartLineList;
+   }
+
+  ngOnInit(): void {
+    
   }
 
 }

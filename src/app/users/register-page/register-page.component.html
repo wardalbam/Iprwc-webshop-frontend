@@ -17,7 +17,7 @@
       <input #pw2 type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
       <div *ngIf="pw1.value !== pw2.value" class="alert alert-danger">Passwords do not match</div>
       <input type="submit" class="fadeIn fourth" value="Register" [disabled]="pw1.value !== pw2.value">
-      
+       
     </form>
     <div *ngIf="unknownError" class="alert alert-warning">Unkown error error occurred pleas try again later!</div>
 

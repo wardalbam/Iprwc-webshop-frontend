@@ -1,4 +1,4 @@
-<h1 class="header">Manage Moderators</h1>
+<!-- <h1 class="header">Manage Moderators</h1>
 
 <p *ngIf="errorOccurred">{{errMessage}}</p>
 <div class="users-container">
@@ -20,4 +20,47 @@
     </li>
   </ul>
 </div>
+ -->
 
+<!-- add new manager button -->
+<div class="page-header">
+  <h1>Users</h1>
+</div>
+
+
+<button class="add-new-man-btn" (click)="addNewManager()">Add manager</button>
+
+
+<select name="filter-users-by-role" id="">
+  <option value="all">All</option>
+  <option value="user">User</option>
+  <option value="moderator">Moderator</option>
+  <option value="admin">Admin</option>
+</select>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Remove</th>
+  </tr>
+  <tr *ngFor="let user of allUsersList">
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td *ngFor="let role of user.roles">
+      <p>{{role.name}}</p>
+    </td>
+    <td>
+      <div class="user-action-button" (click)="removeModerator(user)">
+        <i class="fas fa-trash-alt"></i>
+        <button  class="user-action-button-text button-24"> Remove </button>
+      </div>
+    </td>
+  </tr>
+</table>
+ 

@@ -1,0 +1,28 @@
+<div>
+    <h1>Manage Products</h1>
+    <button class="btn btn-primary add-product-btn" routerLink="add">Add Product</button>
+    <Table>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Status</th>
+            <th>Product Image</th>
+            <th>Product Description</th>
+            <th>Product Actions</th>
+        </tr>
+        <tr *ngFor="let product of productsList">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <p [ngStyle]="{'color' : (product.productStatus=='ACTIVE') ? 'green': 'red'}" >{{product.productStatus}}</p> 
+            </td>
+            <td><img [src]="product.imagePath" width="100" height="100"></td>
+            <!-- show max first 20 words from description  -->
+            <td>{{product.description | slice:0:50}}...</td>
+            <td>
+            <button class="btn btn-primary edit-btn">Edit</button>
+            <button class="btn btn-danger delete-btn">Delete</button>
+            </td>
+        </tr>
+    </Table>
+</div>

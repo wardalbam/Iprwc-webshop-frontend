@@ -25,6 +25,7 @@ import {ManageModeratorsComponent} from "./admin/manage-moderators/manage-modera
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersOverviewComponent } from './admin/orders-overview/orders-overview.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
+import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
 // import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'admin/product/add', component: AddProductsComponent },
+  { path: 'admin/manage/product', component: ManageProductsComponent },
+  { path: 'admin/manage/product/add', component: AddProductsComponent },
   { path: 'admin/manage/mods', component: ManageModeratorsComponent },
   { path: 'checkout', component: CheckoutComponent },
   {path: 'order-success', component: OrderSuccessComponent},
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
     CheckoutComponent,
     OrdersOverviewComponent,
     OrderSuccessComponent,
+    ManageProductsComponent,
   ],
   imports: [
     BrowserModule,

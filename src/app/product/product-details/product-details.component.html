@@ -1,13 +1,20 @@
 
-<div class="product-details">
-  <figure>
-    <img class="product-details__image" src="{{productDetails.imagePath}}" alt="">
-  </figure>
-  <div class="product-details__descriptions">
-    <h2 class="product-details__name"> {{ productDetails.name }} </h2>
-    <h3>{{productDetails.price}}€</h3>
-    <app-product-controller [product]="productDetails"></app-product-controller>
-    <h4>{{productDetails.description}}</h4>
+<div class="product-details-container">
+  <div class="product-details">
+    <div class="product-details-image">
+      <figure class="product-details-image-container">
+        <img class="product-details-image-container-image" src="{{productDetails.imagePath}}" alt="">
+      </figure>
+    </div>
+    <div class="product-details-info">
+      <div class="product-details-info-container">
+        <h2 class="product-details-info-container-name"> {{ productDetails.name }} </h2>
+        <h3 class="product-details-info-container-price">{{productDetails.price}}€</h3>
+        <app-product-controller [product]="productDetails"></app-product-controller>
+        <h4 class="product-details-info-container-description">{{productDetails.description}}</h4>
+      </div>
+    </div>
   </div>
+ 
 </div>
-
+ 

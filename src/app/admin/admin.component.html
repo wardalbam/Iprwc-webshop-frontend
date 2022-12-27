@@ -1,9 +1,13 @@
-<h2>General</h2>
+<h2>Personal Info:</h2>
 <p> fullname: {{ userDetails["fullname"]  }} </p>
 <p> email: {{ userDetails["email"] }} </p>
 <!-- add button to change user email -->
 <!-- <button class="button-3" (click)="changeEmail()">Change email</button> -->
+
 <app-orders-overview *ngIf="userRole == 'ROLE_USER'"></app-orders-overview>
+
+
+
 
 <!-- 
 <h1 *ngIf="userRole == 'ROLE_USER'">Orders ({{ orders.length }})</h1>

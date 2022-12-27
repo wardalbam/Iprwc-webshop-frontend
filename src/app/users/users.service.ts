@@ -33,7 +33,6 @@ export class UsersService {
         this.user.next(this.getUser());
      }
      this.UserRole.next("test");
-    
    }
 
 
@@ -42,7 +41,7 @@ export class UsersService {
     //   .set('username', userForm['username'])
     //   .set('password', userForm['password']);
     // return this.http.post<any>( `${environment.APIEndpoint}/login`, params);
-    // this.logout();
+    this.logout();
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -121,9 +120,11 @@ export class UsersService {
   public setLoggedOut(): void {
     this.loggedIn.next(false);
     localStorage.setItem(this.LOGGED_IN, "false");
-    this.cookieService.delete('auth-username');
+    this.cookieService.deleteAll('auth-username');
     this.cookieService.delete('auth-role');
     this.cookieService.delete('auth-token');
+    // clear all the cookie 
+    this.cookieService.deleteAll('/');
     this.router.navigate(['/login']);
   }
 

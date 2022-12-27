@@ -1,0 +1,70 @@
+/* style buttnon */
+.add-product-btn {
+    width: 140px;
+    border: none;
+    height: 30px;
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color:yellowgreen;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.5s;
+    &:focus{
+        outline: none;
+    }
+    &:hover{
+        background-color: #9bc317;
+        cursor: pointer;
+    }
+}
+
+/* style table */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: rgb(134, 179, 44);
+  padding: 8px;
+}
+td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd33;
+}
+
+/* style edit button as warning small size */
+.edit-btn {
+  background-color: #ff9800; /* Orange */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+/* style delete button danger small size */
+.delete-btn {
+  background-color: #f44336; /* Red */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}

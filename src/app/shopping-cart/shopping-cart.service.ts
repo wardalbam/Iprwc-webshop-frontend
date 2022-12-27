@@ -13,14 +13,20 @@ export class ShoppingCartService {
   public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
 
   constructor(private cookieService: CookieService) {
+    // this.syncCartWithCookie();
+    // this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
+    console.log(this.cookieService.get("ShoppingCart") + "1");
+    console.log(  this.shoppingCart);
+
     if(this.cookieService.get("ShoppingCart")){
-    this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
-    }else{
-    this.cookieService.set("ShoppingCart", JSON.stringify( new ShoppingCartModel([]) ) );
+        this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
+    } else{
+      this.cookieService.set("ShoppingCart", JSON.stringify( new ShoppingCartModel([]) ) );
     }
    }
 
   getAllCartLines(){
+    // return JSON.parse(this.cookieService.get("ShoppingCart"))
     return this.shoppingCart;
   }
 

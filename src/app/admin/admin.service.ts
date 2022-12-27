@@ -27,15 +27,19 @@ export class AdminService {
   //     , params);
   // }
 
-  uploadProduct(productData: Product){
-
+  uploadProduct(productData: any){
+    // from any to product 
+    let product = new Product(null, productData.name, productData.price, productData.ImagePath, productData.description, productData.status);
+    console.log(product);
     const token = this.userService.getToken();
     let options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+      headers: new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.post<any>( this.baseUrl+"/product/add", productData, options);
+    return this.http.post<any>( this.baseUrl+"/product/add",product, options);
   }
+
 
   getAllUsers(){
     const token = this.userService.getToken();
