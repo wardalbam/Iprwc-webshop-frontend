@@ -7,12 +7,13 @@ import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-orders-overview',
   templateUrl: './orders-overview.component.html',
-  styleUrls: ['./orders-overview.component.css']
+  styleUrls: ['./orders-overview.component.scss']
 })
 export class OrdersOverviewComponent implements OnInit {
 
   orders: any[];
   userRole: string;
+  showOrderItemsFlag: boolean = false;
   constructor(private adminService: AdminService, private userService: UsersService, private cookieService: CookieService) { }
 
   selectedStatus = '';
@@ -25,11 +26,10 @@ export class OrdersOverviewComponent implements OnInit {
     this.userService.getOrderListByUser().subscribe(
       data => {
         console.log(data);
-        // order the orders by order.orderDate 
         this.orders = data;
     });
-
   }
+  
   updateOrderStatus( orderId: string, orderStatus: string){
     this.adminService.updateOrderStatus(orderId, orderStatus).subscribe(
       data => {
@@ -41,5 +41,12 @@ export class OrdersOverviewComponent implements OnInit {
       console.log(error);
     });
   }
+  showOrderItems(){
+    this.showOrderItemsFlag = true;
+  }
+  hideOrderItems(){
+    this.showOrderItemsFlag = false;
+  }
+  
 
 }

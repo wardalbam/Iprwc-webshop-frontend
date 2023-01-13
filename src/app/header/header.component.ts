@@ -9,7 +9,7 @@ import { ShoppingCartModel } from '../shopping-cart/shopping-cart-model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private LOGGED_IN = 'isLoggedIn';
   private USERNAME = 'auth-username';
   constructor( private shoppingCartService: ShoppingCartService, private userService:UsersService, private cookieService:CookieService) {
-    // this.shoppingCartService.syncCartWithCookie();
     this.amount_products_shoppingCart =  this.shoppingCartService.getTotalAmountProducts();
    
   }
@@ -37,16 +36,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isLoggedInSubscription = this.userService.loggedIn.subscribe((LoggedIn) => {
       this.isLoggedIn = LoggedIn;
     });
-    // if(this.userService.isLoggedIn() ){
-    //   this.isLoggedIn = true;
-    // }
+
     this.isLoggedIn = (localStorage.getItem(this.LOGGED_IN)  === "true");
     this.userRole = this.cookieService.get('auth-role');
     this.userRoleSub = this.userService.UserRole.subscribe((role) => {
       this.userRole = role;
     });
+    
     console.log(this.userRole);
-
     this.getUserNameSub =  this.userService.user.subscribe((username) => {
       this.userName = username;
     }
@@ -57,6 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   logout(){
+    console.log(this.userRole);
     this.isLoggedIn = false;
     this.userService.setLoggedOut();
     this.updateUserName();

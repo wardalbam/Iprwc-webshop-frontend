@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
         this.userService.saveToken(data.access_token);
         this.loginError = false;
         this.userService.setLoggedIn();
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
         this.token = data;
         form.resetForm();
         this.userService.loggedIn.next(true);

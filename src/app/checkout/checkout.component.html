@@ -11,16 +11,9 @@
     <h1 style="font-size:300%;">Checkout</h1>
     <app-order-summary [shoppingCartLineList]="productRowList"></app-order-summary>
 
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate > 
       <h2>Shipping Information</h2>
-      <!-- <div class="field" tabindex="1">
-        <label for="land">
-          <i class="far fa-user"></i>Land
-        </label>
-        <select id="land" name="land">
-          <option name="land" value="Netherlands" [defaultSelected]="'Netherlands'">Netherlands</option>
-        </select>
-      </div> -->
+    
       <div class="field" tabindex="2">
         <label for="zipcode">
           <i class="far fa-envelope"></i>Zipcode*
@@ -45,12 +38,10 @@
         </label>
         <input ngModel name="phone" type="tel" placeholder="e.g. 0612345678" required>
       </div>
-      <!-- <div class="field" tabindex="3">
-        <label for="message">
-          <i class="far fa-edit"></i>Extra info
-        </label>
-        <textarea ngModel name="message" placeholder="type here" required></textarea>
-      </div> -->
+      <!-- error message -->
+      <div class="error-message alert danger" *ngIf="formError">
+        <p>{{errorMessage}}</p>
+      </div>
       <button type="submit" class="btn-primary">Bestelling plaatsen</button>
     </form>
     

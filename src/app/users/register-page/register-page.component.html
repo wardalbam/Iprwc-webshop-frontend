@@ -13,8 +13,9 @@
       <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel required>
       <div *ngIf="usernameExistsError" class="alert alert-warning">Username is taken!</div>
       <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email" ngModel required>
-      <input #pw1 type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>
+      <input #pw1 type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel pattern="(?=.*\d)(?=.*[\W_]).{7,}" title="Minimum of 7 characters. Should have at least one special character and one number.">
       <input #pw2 type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
+      <p class="passwordInstructions"> Minimum of 7 characters. <br> Should have at least one special character and one number. </p>
       <div *ngIf="pw1.value !== pw2.value" class="alert alert-danger">Passwords do not match</div>
       <input type="submit" class="fadeIn fourth" value="Register" [disabled]="pw1.value !== pw2.value">
        

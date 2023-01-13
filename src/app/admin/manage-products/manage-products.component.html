@@ -20,7 +20,7 @@
             <!-- show max first 20 words from description  -->
             <td>{{product.description | slice:0:50}}...</td>
             <td>
-            <button class="btn btn-primary edit-btn">Edit</button>
+            <button class="btn btn-primary edit-btn" routerLink="{{ 'edit/'+product.id }}" >Edit</button>
             <button class="btn btn-danger delete-btn">Delete</button>
             </td>
         </tr>

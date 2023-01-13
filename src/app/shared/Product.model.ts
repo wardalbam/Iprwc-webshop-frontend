@@ -5,5 +5,5 @@ export class Product{
   public set imagePath(value: string) {
     this.ImagePath = value;
   }
-  constructor(public id:string, public name: string, public price: number, private ImagePath: string, public description: string, private productStatus : string) {}
+  constructor(public id:string, public name: string, public price: number, public ImagePath: string, public description: string, public productStatus : string) {}
 }

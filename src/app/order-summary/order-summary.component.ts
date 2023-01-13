@@ -1,12 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ShoppingCartModel} from "../shopping-cart/shopping-cart-model";
-import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
-import {ShoppingCartLineModel} from "../shopping-cart/shopping-cart-line.model";
+import { Component, Input, OnInit } from '@angular/core';
+import { ShoppingCartLineModel } from '../shopping-cart/shopping-cart-line.model';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.css']
+  styleUrls: ['./order-summary.component.scss']
 })
 export class OrderSummaryComponent implements OnInit {
 
@@ -25,5 +24,4 @@ export class OrderSummaryComponent implements OnInit {
   getTotalAmountItems(){
     return this.shoppingCartService.getTotalAmountProducts();
   }
-
 }

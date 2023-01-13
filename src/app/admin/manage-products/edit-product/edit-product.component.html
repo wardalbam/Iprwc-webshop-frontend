@@ -1,0 +1,30 @@
+<!-- show form with preset values that you can take from the product var -->
+<form #myForm="ngForm" ngNativeValidate (submit)="uploadEditedProduct(myForm.value)">
+    <h2>Edit product</h2>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" type="text" class="form-control" id="name" placeholder="Enter name" ngModel [ngModel]="product.name" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input name="price" step=".01" type="number" class="form-control" id="price" placeholder="Enter price" ngModel  [ngModel]="product.price" required>
+    </div>
+    <!-- description as texterea -->
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description"  class="form-control" id="description" rows="8" ngModel [ngModel]="product.description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="imagepath">ImagePath</label>
+        <input name="imagepath" type="text" class="form-control" id="imagepath" placeholder="Enter image path" ngModel  [ngModel]="product.imagePath" required>
+    </div>
+    <!-- select product status active or hidden -->
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" class="form-control" id="status" ngModel  [ngModel]="product.productStatus" required>
+            <option value="active">Active</option>
+            <option value="hidden">Hidden</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary submit-btn" [disabled]="!myForm.valid" >Submit</button>
+</form>

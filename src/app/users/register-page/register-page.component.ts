@@ -18,14 +18,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   saveUser(form: NgForm){
-    console.log(form.value);
-    // create a new userRegisterForm object 
-    // let userRegisterForm = new UserRegisterForm(
-    //   form.value.fullname,
-    //   form.value.email,
-    //   form.value.password,
-    //   form.value.username
-    
     this.userService.registerUser(form.value).subscribe(
       (data) => {
           this.router.navigate(['/login']);

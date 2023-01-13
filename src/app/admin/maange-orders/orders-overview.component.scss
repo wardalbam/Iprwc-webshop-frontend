@@ -1,5 +1,4 @@
 
-
 .orders{
     display: flex;
     flex-direction: column-reverse;
@@ -148,6 +147,7 @@ table{
     border: 1px solid #33365222;
     border-radius: 5px;
     padding: 1rem;
+    overflow-x: auto;
 }
 
 th{

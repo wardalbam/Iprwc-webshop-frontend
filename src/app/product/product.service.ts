@@ -24,7 +24,15 @@ export class ProductService {
     return this.http.get<Product[]>(`http://127.0.0.1:8080/api/product/all`);
   }
   getAllAdminProducts(){
-    return this.http.get<Product[]>(`http://127.0.0.1:8080/api/admin/product/all`);
+    // add token to header
+    const token = this.userService.getToken();
+    let options = {
+      headers: new HttpHeaders()
+        .set
+        ('Authorization', 'Bearer ' + token)
+        .set('Content-Type', 'application/json')
+    }
+    return this.http.get<Product[]>(`http://127.0.0.1:8080/api/admin/product/all`, options);
   }
 
   

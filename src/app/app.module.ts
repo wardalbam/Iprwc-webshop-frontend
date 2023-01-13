@@ -23,9 +23,12 @@ import { AdminComponent } from './admin/admin.component';
 import { AddProductsComponent } from './admin/add-products/add-products.component';
 import {ManageModeratorsComponent} from "./admin/manage-moderators/manage-moderators.component";
 import { CheckoutComponent } from './checkout/checkout.component';
-import { OrdersOverviewComponent } from './admin/orders-overview/orders-overview.component';
+import { OrdersOverviewComponent } from './admin/maange-orders/orders-overview.component';
 import { OrderSuccessComponent } from './checkout/order-success/order-success.component';
 import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
+import { EditProductComponent } from './admin/manage-products/edit-product/edit-product.component';
+import { OrderDetailsComponent } from './admin/maange-orders/order-details/order-details.component';
+import { AddManagerComponent } from './admin/manage-moderators/add-manager/add-manager.component';
 // import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 
@@ -40,11 +43,13 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'admin/manage/product', component: ManageProductsComponent },
   { path: 'admin/manage/product/add', component: AddProductsComponent },
+  { path: 'admin/manage/product/edit/:product_id', component: EditProductComponent },
   { path: 'admin/manage/mods', component: ManageModeratorsComponent },
+  { path: 'admin/manage/mods/add', component: AddManagerComponent },
   { path: 'checkout', component: CheckoutComponent },
-  {path: 'order-success', component: OrderSuccessComponent},
-  {path: 'admin/orders', component: OrdersOverviewComponent}
-  // allow accsess to route admin only for user with role "ROLE_ADMIN" 
+  { path: 'order-success', component: OrderSuccessComponent},
+  { path: 'admin/manage/orders', component: OrdersOverviewComponent},
+  { path: 'admin/manage/orders/:order_id', component: OrderDetailsComponent}
   
 
 ];
@@ -61,7 +66,6 @@ const appRoutes: Routes = [
     ProductDetailsComponent,
     CartLineControllerComponent,
     ProductSummeryDialogComponent,
-    OrderSummaryComponent,
     LoginPageComponent,
     RegisterPageComponent,
     AdminComponent,
@@ -71,14 +75,16 @@ const appRoutes: Routes = [
     OrdersOverviewComponent,
     OrderSuccessComponent,
     ManageProductsComponent,
+    EditProductComponent,
+    ProductSummeryDialogComponent,
+    OrderSummaryComponent,
+    AddManagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
-    BrowserAnimationsModule,
-    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatNativeDateModule,

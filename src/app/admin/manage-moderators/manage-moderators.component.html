@@ -27,16 +27,9 @@
   <h1>Users</h1>
 </div>
 
+<!-- linlk to add manager component  -->
+<button *ngIf="userRole == 'ROLE_ADMIN'" class="btn btn-primary add-new-man-btn" routerLink="add">Add Manager</button>
 
-<button class="add-new-man-btn" (click)="addNewManager()">Add manager</button>
-
-
-<select name="filter-users-by-role" id="">
-  <option value="all">All</option>
-  <option value="user">User</option>
-  <option value="moderator">Moderator</option>
-  <option value="admin">Admin</option>
-</select>
 
 <table>
   <tr>
@@ -56,7 +49,7 @@
       <p>{{role.name}}</p>
     </td>
     <td>
-      <div class="user-action-button" (click)="removeModerator(user)">
+      <div class="user-action-button" (click)="removeUser(user.id)">
         <i class="fas fa-trash-alt"></i>
         <button  class="user-action-button-text button-24"> Remove </button>
       </div>

@@ -32,16 +32,16 @@ export class UsersService {
      if( this.isLoggedIn() ){
         this.user.next(this.getUser());
      }
-     this.UserRole.next("test");
    }
 
 
   login(userForm){
-    // const params = new HttpParams()
-    //   .set('username', userForm['username'])
-    //   .set('password', userForm['password']);
-    // return this.http.post<any>( `${environment.APIEndpoint}/login`, params);
-    this.logout();
+    this.loggedIn.next(false);
+    localStorage.setItem(this.LOGGED_IN, "false");
+    this.cookieService.deleteAll('/');
+    this.cookieService.deleteAll('auth-username');
+    this.cookieService.delete('auth-role');
+    this.cookieService.delete('auth-token');
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -49,21 +49,21 @@ export class UsersService {
     let body = new URLSearchParams();
     body.set('username', userForm['username']);
     body.set('password', userForm['password']);
-    // this.user.next(this.getUser());
-    
+    this.user.next(this.getUser());
     return this.http.post<any>(`${environment.APIEndpoint}/login`, body.toString(), options);
+    
   }
   registerUser(registerForm : any){
-    
-    console.log(registerForm);
-    // let body = new URLSearchParams();
-    // body.set('username', registerForm['username']);
-    // body.set('fullName', registerForm['fullName']);
-    // body.set('email', registerForm['email']);
-    // body.set('password', registerForm['password']);
-    // add 
-
     return this.http.post<any>(`${environment.APIEndpoint}/api/user/save`, registerForm);
+  }
+  registerManager(registerForm : any){
+    // add token to header]
+    let options = {
+      headers: new HttpHeaders().set
+      ('Authorization', 'Bearer ' + this.getToken())
+    };
+    return this.http.post<any>(`${environment.APIEndpoint}/api/user/save/manager`, registerForm, options);
+
   }
 
  
@@ -123,8 +123,8 @@ export class UsersService {
     this.cookieService.deleteAll('auth-username');
     this.cookieService.delete('auth-role');
     this.cookieService.delete('auth-token');
-    // clear all the cookie 
     this.cookieService.deleteAll('/');
+    this.cookieService.deleteAll();
     this.router.navigate(['/login']);
   }
 
@@ -144,7 +144,6 @@ export class UsersService {
     );
   }
 
- 
   logout() {
     this.setLoggedOut();
   }
@@ -163,9 +162,11 @@ export class UsersService {
       next: (data: any) => {
         if (data.status === 200 && this.isLoggedIn()) {
           this.setLoggedIn();
+          this.loggedIn.next(true);
           return;
         }
         this.setLoggedOut();
+        this.loggedIn.next(false);
       },
       error: err => {
         console.log(err);

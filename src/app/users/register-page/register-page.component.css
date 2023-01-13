@@ -220,3 +220,12 @@ input[type=text]::placeholder, input[type=password]::placeholder, input[type=ema
   outline: none;
 }
 
+
+.passwordInstructions{
+  color: #715e13aa;
+  font-size: 12px;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+
+}

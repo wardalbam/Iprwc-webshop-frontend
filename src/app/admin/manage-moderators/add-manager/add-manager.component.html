@@ -1,0 +1,18 @@
+<!-- add manager form username + password and go back to manage-mods on submit -->
+
+<button class="go-back-btn" routerLink="/admin/manage/mods">Go back</button>
+
+<h2>Add new Manager</h2>
+<!-- Register Form -->
+<form #registerManagerForm="ngForm"  (submit)="saveManager(registerManagerForm)" ngNativeValidate>
+    
+    <input type="text" id="fullname" class="fadeIn second" name="fullname" placeholder="full name" ngModel required>
+    <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel required>
+    <div *ngIf="usernameExistsError" class="alert alert-warning">Username is taken!</div>
+    <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email" ngModel required>
+    <input #pw1 type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>
+    <input #pw2 type="password" id="password-2" class="fadeIn third" name="password2" placeholder="confirm password" ngModel>
+    <div *ngIf="pw1.value !== pw2.value" class="alert alert-danger">Passwords do not match</div>
+    <input type="submit" class="fadeIn fourth btn" value="Register" [disabled]="pw1.value !== pw2.value">
+     
+</form>

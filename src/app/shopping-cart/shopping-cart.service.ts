@@ -13,20 +13,18 @@ export class ShoppingCartService {
   public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
 
   constructor(private cookieService: CookieService) {
-    // this.syncCartWithCookie();
-    // this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
-    console.log(this.cookieService.get("ShoppingCart") + "1");
-    console.log(  this.shoppingCart);
-
-    if(this.cookieService.get("ShoppingCart")){
-        this.shoppingCart = JSON.parse(this.cookieService.get("ShoppingCart"));
-    } else{
-      this.cookieService.set("ShoppingCart", JSON.stringify( new ShoppingCartModel([]) ) );
+    if( 
+      localStorage.getItem("ShoppingCart") !== null &&
+      localStorage.getItem("ShoppingCart").length > 0
+    ){
+      this.shoppingCart = JSON.parse(localStorage.getItem("ShoppingCart"));
+    }else{
+      this.shoppingCart = new ShoppingCartModel([]);
+      localStorage.setItem("ShoppingCart", JSON.stringify(this.shoppingCart));
     }
    }
 
   getAllCartLines(){
-    // return JSON.parse(this.cookieService.get("ShoppingCart"))
     return this.shoppingCart;
   }
 
@@ -64,7 +62,6 @@ export class ShoppingCartService {
   }
 
   getTotalAmountProducts(){
-    this.syncCartWithCookie();
     let counter: number = 0;
     this.shoppingCart.shoppingCartLineList.forEach(shoppingCartLine => {
       counter += shoppingCartLine.amount;
@@ -79,9 +76,7 @@ export class ShoppingCartService {
   }
 
   public getProductAmountInCart(product : Product){
-    this.syncCartWithCookie();
     if(this.findProductInShoppingCart(product)){
-      // return JSON.parse(this.cookieService.get("ShoppingCart")).shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount;
       return this.shoppingCart.shoppingCartLineList.find(shoppingCartLine => shoppingCartLine.product === product).amount;
     }else{
       return 0;
@@ -89,7 +84,7 @@ export class ShoppingCartService {
   }
 
   public syncCartWithCookie(){
-    this.cookieService.set("ShoppingCart", JSON.stringify(this.shoppingCart));
+    localStorage.setItem("ShoppingCart", JSON.stringify(this.shoppingCart));
   }
 
   public clearCart(){

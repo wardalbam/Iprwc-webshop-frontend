@@ -7,7 +7,7 @@ import {ShoppingCartService} from "../../../shopping-cart/shopping-cart.service"
 @Component({
   selector: 'app-product-summery-dialog',
   templateUrl: './product-summery-dialog.component.html',
-  styleUrls: ['./product-summery-dialog.component.css']
+  styleUrls: ['./product-summery-dialog.component.scss']
 })
 export class ProductSummeryDialogComponent implements OnInit {
   Line :  ShoppingCartLineModel;

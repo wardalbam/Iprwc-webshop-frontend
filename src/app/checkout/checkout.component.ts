@@ -13,7 +13,7 @@ import { Address } from '../shared/Address.model';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
 
@@ -25,9 +25,11 @@ export class CheckoutComponent implements OnInit {
   isLoggedIn: boolean;
   token:string;
   loginError: boolean;
+  formError: boolean = false;
   guest : boolean = false;
   OrderPlaced : boolean = false;
   PlacedOrder : Order;
+  errorMessage : string = "something went wrong please try again later!";
 
   constructor(private userService : UsersService, private router : Router, public shoppingCartService: ShoppingCartService, private formBuilder: FormBuilder) { }
 
@@ -59,8 +61,10 @@ export class CheckoutComponent implements OnInit {
         this.PlacedOrder = data;
         this.OrderPlaced = true;
         this.shoppingCartService.clearCart();
+        this.formError = false;
         this.router.navigate(["./order-success"]);
       }, error => {
+        this.formError = true;
         console.log(error);
       }
     )
