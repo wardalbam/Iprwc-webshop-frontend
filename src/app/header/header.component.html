@@ -1,4 +1,6 @@
-<nav class="navigation-container" >
+
+<!-- nav for normal user -->
+<nav class="navigation-container" *ngIf="!(isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER')">
   <a href="" routerLink="" >
     <div class="logo-container">
       <figure>
@@ -7,17 +9,8 @@
     </div>
   </a>
   <ul>
-    <li *ngIf="(userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER') && isLoggedIn">
-      <a   routerLink="admin/manage/mods"> Users </a>
-    </li>
-    <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
-      <a  routerLink="admin/manage/product"> Products </a>
-    </li>
-    <li *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
-      <a routerLink="admin/manage/orders"> Orders </a>
-    </li>
-    <li *ngIf="isLoggedIn">
-      <a  routerLink="admin"> Profile </a> 
+    <li *ngIf="isLoggedIn && userRole == 'ROLE_USER'">
+      <a  routerLink="profile"> Profile </a> 
     </li>
     <li *ngIf="!isLoggedIn || userRole == null">
       <a routerLink="login" >Login</a>
@@ -35,3 +28,27 @@
     </li>
   </ul>
 </nav>
+
+<!-- nav for admin and manager -->
+<nav class="navigation-container"  *ngIf="isLoggedIn && userRole == 'ROLE_ADMIN' || userRole == 'ROLE_MANAGER'">
+  <a href="" routerLink="admin" >
+    <div class="logo-container">
+      <figure>
+        <img class="logo" src="../../assets/img/angular-guitar-shop-logo.jpg" alt="logo">
+      </figure>
+    </div>
+  </a>
+  <ul>
+    <li *ngIf="!isLoggedIn || userRole == null">
+      <a routerLink="login" >Login</a>
+    </li>
+    <li *ngIf="isLoggedIn && userRole != null">
+      <a  (click)="logout()" routerLink="" >Logout</a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+

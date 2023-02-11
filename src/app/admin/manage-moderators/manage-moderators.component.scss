@@ -1,88 +1,8 @@
 
-// .users-container{
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     width: 100%;
-//     height: 100%;
-//     padding: 20px;
-//     .users{
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         justify-content: center;
-//         width: 100%;
-//         height: 100%;
-//         .user{
-//             display: flex;
-//             flex-direction: column;
-//             align-items: left;
-//             justify-content: left;
-//             width: 100%;
-//             height: 100%;
-//             padding: 10px;
-//             .user-info{
-//                 display: flex;
-//                 flex-direction: column;
-//                 align-items: left;
-//                 justify-content: center;
-//                 width: 100%;
-//                 height: 100%;
-//                 padding: 10px;
-//                 .user-name{
-//                     font-size: 20px;
-//                     font-weight: bold;
-//                 }
-//                 .user-email{
-//                     font-size: 15px;
-//                     font-weight: bold;
-//                 }
-//             }
-//             .user-action-button{
-//                 padding: 10px;
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
 
-//                 .user-action-button-text{
-//                     background: #FF4742;
-//                     border: 1px solid #FF4742;
-//                     border-radius: 6px;
-//                     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-//                     box-sizing: border-box;
-//                     color: #FFFFFF;
-//                     cursor: pointer;
-//                     display: inline-block;
-//                     font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-//                     font-size: 16px;
-//                     font-weight: 800;
-//                     line-height: 16px;
-//                     min-height: 40px;
-//                     outline: 0;
-//                     padding: 12px 14px;
-//                     text-align: center;
-//                     text-rendering: geometricprecision;
-//                     text-transform: none;
-//                     user-select: none;
-//                     -webkit-user-select: none;
-//                     touch-action: manipulation;
-//                     vertical-align: middle;
-//                     transition: 0.4s;
-//                     &:hover,
-//                     &:active {
-//                     background-color: initial;
-//                     background-position: 0 0;
-//                     color: #FF4742;
-//                     }
-//                     &:active {
-//                     opacity: .5;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-h1{
-    margin: 10px;
-}
 
 
 // style add manager button 
@@ -105,6 +25,13 @@ h1{
         background-color: #9bc317;
         cursor: pointer;
     }
+}
+.page-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
 }
 
 
@@ -130,20 +57,19 @@ table{
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #ddd;
+    border: 1px solid #33365222;
+    border-radius: 5px;
+    padding: 1rem;
+    overflow-x: auto;
     th{
-        background-color: rgb(134, 179, 44);
-        color: rgb(42, 42, 42);
+        padding: 1rem;
+        background: #000;
+        color: $secondary-color;
     }
-    th, td {
-        text-align: left;
-        padding: 16px;
-    }
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    tr:hover {
-        background-color: #ddd;
+    td {
+        border: 1px solid #00000022;
+        border-radius: 5px;
+        padding: 1rem;
     }
     .user-action-button{
         padding: 10px;

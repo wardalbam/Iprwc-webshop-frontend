@@ -11,7 +11,7 @@ import {ShoppingCartLineModel} from "../../../shopping-cart/shopping-cart-line.m
 @Component({
   selector: 'app-product-controller',
   templateUrl: './product-controller.component.html',
-  styleUrls: ['./product-controller.component.css']
+  styleUrls: ['./product-controller.component.scss']
 })
 export class ProductControllerComponent implements OnInit {
   @Input() product: Product;

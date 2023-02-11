@@ -20,6 +20,7 @@ export class OrderDetailsComponent implements OnInit {
         this.adminService.getOrderDetails(params["order_id"]).subscribe(
           data =>{
             this.order = data;
+            console.log(this.order);
           },
           error =>{
             console.log(error);
@@ -30,4 +31,8 @@ export class OrderDetailsComponent implements OnInit {
     
   }
 
+  goBack(){
+    window.history.back();
+  }
+  
 }

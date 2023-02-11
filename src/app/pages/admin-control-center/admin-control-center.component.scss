@@ -1,0 +1,28 @@
+
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+
+.mat-tab-label .mat-tab-label-content{
+    color: #000;
+    font-size: 1.2rem;
+    transition: 0.5s !important;
+    font-weight: 600;
+}
+// // 
+.mat-tab-label:active{
+    background-color: red;
+    // width: 100%;
+    padding-right: 0;
+    margin-right: 0;
+    transition: 0.5s !important;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+}
+.mat-tab-label{
+    color: #000;
+    opacity: 1;
+    transition: 0.5s !important;
+}

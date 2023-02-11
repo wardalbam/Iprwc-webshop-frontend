@@ -11,21 +11,6 @@ export class AdminService {
   baseUrl = `http://127.0.0.1:8080/api`;
   constructor(private http : HttpClient, private userService : UsersService) { }
 
-  // uploadProduct(productData: Product){
-  //   console.log(productData);
-  //   const params = new HttpParams()
-  //     .set('name', productData['product-name'])
-  //     .set('price', productData["product-price"])
-  //       .set('description' ,productData["product-description"] )
-  //       .set('imageUrl' , productData["product-img-url"]);
-  //
-  //   return this.http.post<any>( this.baseUrl +
-  //     "?name=" + productData['product-name']+"&"+
-  //     "price=" + productData['product-price']+"&"+
-  //     "description=" + productData['product-description']+"&"+
-  //     "imageUrl=" + productData['product-img-url']
-  //     , params);
-  // }
 
   uploadProduct(productData: any){
     // from any to product 
@@ -89,7 +74,8 @@ export class AdminService {
   }
 
 
-
+  // In case ROLE_USER => Get all Orders from the specefic user sending the request
+  // in case that the user has role admin or manager => return all the orders from all the users 
   public getAllOrders(){
     const token = this.userService.getToken();
     let options = {
@@ -99,6 +85,7 @@ export class AdminService {
     return this.http.get<any>( this.baseUrl+"/order/all", options);
   }
 
+  // update order status
   public updateOrderStatus(orderId: string, orderStatus: string){
     const params = new HttpParams()
     .set('status', orderStatus)
@@ -111,7 +98,6 @@ export class AdminService {
       .set('Content-Type', 'application/json'),
       params:params
     }
-
     return this.http.put<any>( `${environment.APIEndpoint}/order/status`,{}, options);
   }
 
@@ -122,7 +108,7 @@ export class AdminService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.get<any>( "http://127.0.0.1:8080/order/"+orderId, options);
+    return this.http.get<any>( `${environment.APIEndpoint}/order/`+orderId, options);
   }
 
   // remove user by id
@@ -132,18 +118,17 @@ export class AdminService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.delete<any>( "http://127.0.0.1:8080/api/user/delete/"+userId, options );
+    return this.http.delete<any>( `${environment.APIEndpoint}/api/user/delete/`+userId, options );
   }
 
-
   // remove product by id
-  public removeProductById(productId: string){
+  public removeProduct(productId: string){
     const token = this.userService.getToken();
     let options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.delete<any>( "http://127.0.0.1:8080/api/user/delete/"+productId, options)
+    return this.http.delete<any>( `${environment.APIEndpoint}/api/user/delete/`+productId, options)
   }
 
 }

@@ -1,7 +1,13 @@
+
+<!-- add a with back arow -->
+<a [routerLink]="['/admin']" class="back-btn">
+    < Back
+</a>
+
 <h1>Order {{order.id}} </h1>
 <div class="order-container">
     <div class="orderLine-container">
-        <div class="orderLine" *ngFor="let orderLine of order.orederLines">
+        <div class="orderLine" *ngFor="let orderLine of order['orederLines']">
             <div class="orderLine-info">
                 <div class="orderLine-image">
                     <img src="{{ orderLine['product_image'] }}" alt="{{ orderLine['product_name'] }}">
@@ -31,30 +37,3 @@
         <p [ngStyle]="{'color' : (order['orderStatus']=='PROCESSING') ? 'orange': 'green'}"> <strong>{{ order["orderStatus"] }} </strong> </p>
     </div> -->
 </div>
-
-
-<table>
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-    </tr>
-    <tr *ngFor="let orderLine of order['orederLines']">
-        <td>
-            <div class="orderLine-info">
-                <div class="orderLine-image">
-                    <img src="{{ orderLine['product_image'] }}" alt="{{ orderLine['product_name'] }}">
-                </div>
-                <div class="orderLine-info-text">
-                    <p> <strong>{{ orderLine["product_name"] }} </strong> </p>
-                </div>
-            </div>
-        </td>
-        <td>
-            <p> quantity: <strong>{{ orderLine["amount"] }} </strong> </p>
-        </td>
-        <td>
-            <p>  <strong>{{ orderLine["product_price"] }}  </strong>  </p>
-        </td>
-    </tr>
-</table>

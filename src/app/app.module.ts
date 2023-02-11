@@ -29,28 +29,33 @@ import { ManageProductsComponent } from './admin/manage-products/manage-products
 import { EditProductComponent } from './admin/manage-products/edit-product/edit-product.component';
 import { OrderDetailsComponent } from './admin/maange-orders/order-details/order-details.component';
 import { AddManagerComponent } from './admin/manage-moderators/add-manager/add-manager.component';
+import { FooterComponent } from './footer/footer.component';
+import { AdminControlCenterComponent } from './pages/admin-control-center/admin-control-center.component';
 // import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import {MatTabsModule} from '@angular/material/tabs';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 
 const appRoutes: Routes = [
   { path: 'cart', component: ShoppingCartComponent },
-  { path: '', component: ProductListComponent },
+  { path: '', component: HomeComponent },
   { path: 'product/:product_id', component: ProductDetailsComponent },
   { path: 'cart/:product_id', component: ProductDetailsComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/manage/product', component: ManageProductsComponent },
-  { path: 'admin/manage/product/add', component: AddProductsComponent },
-  { path: 'admin/manage/product/edit/:product_id', component: EditProductComponent },
+  { path: 'admin', component: AdminControlCenterComponent },
+  { path: 'admin/product', component: ManageProductsComponent },
+  { path: 'admin/product/add', component: AddProductsComponent },
+  { path: 'admin/product/edit/:product_id', component: EditProductComponent },
   { path: 'admin/manage/mods', component: ManageModeratorsComponent },
-  { path: 'admin/manage/mods/add', component: AddManagerComponent },
+  { path: 'admin/manager/add', component: AddManagerComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-success', component: OrderSuccessComponent},
   { path: 'admin/manage/orders', component: OrdersOverviewComponent},
-  { path: 'admin/manage/orders/:order_id', component: OrderDetailsComponent}
-  
+  { path: 'admin/manage/orders/:order_id', component: OrderDetailsComponent},
+  { path: 'profile', component: UserProfileComponent }
+
 
 ];
 
@@ -78,7 +83,11 @@ const appRoutes: Routes = [
     EditProductComponent,
     ProductSummeryDialogComponent,
     OrderSummaryComponent,
-    AddManagerComponent
+    AddManagerComponent,
+    FooterComponent,
+    OrderDetailsComponent,
+    AdminControlCenterComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +97,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
     // PasswordStrengthMeterModule
   ],
   providers: [],

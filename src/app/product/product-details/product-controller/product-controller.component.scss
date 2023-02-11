@@ -1,3 +1,8 @@
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+
+
 .product-editor-controller{
   display: flex;
   flex-direction: row;
@@ -19,22 +24,20 @@
 
 }
 
-
-
-
 /*tst*/
 a{
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #FAD02C !important;
+  padding: 7px 15px;
+  background-color: $secondary-color !important;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
   letter-spacing: 4px;
   overflow: hidden;
-  margin-left: 3rem;
-  color: #333652;
+  margin-left: 1rem;
+  color: $primary-color !important;
+  border: 10px;
 }
 a:hover{
   cursor: pointer;

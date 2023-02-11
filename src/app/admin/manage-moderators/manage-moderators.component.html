@@ -25,10 +25,10 @@
 <!-- add new manager button -->
 <div class="page-header">
   <h1>Users</h1>
+  <button *ngIf="userRole == 'ROLE_ADMIN'" class="btn btn-primary add-new-man-btn" routerLink="manager/add">Add Manager</button>
 </div>
 
 <!-- linlk to add manager component  -->
-<button *ngIf="userRole == 'ROLE_ADMIN'" class="btn btn-primary add-new-man-btn" routerLink="add">Add Manager</button>
 
 
 <table>

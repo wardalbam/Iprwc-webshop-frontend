@@ -1,0 +1,26 @@
+// figure has to fit the whole intro 100 widht 100 height 
+figure{
+    width: 100%;
+    height: 100vh;
+    // margin: auto;
+   
+}
+figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+// make the text in the middle of the intro 
+.hero-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ddd;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1.8rem;
+}

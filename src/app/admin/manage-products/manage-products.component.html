@@ -1,6 +1,9 @@
 <div>
-    <h1>Manage Products</h1>
-    <button class="btn btn-primary add-product-btn" routerLink="add">Add Product</button>
+    <div class="page-header">
+        <h1>Products</h1>
+        <button class="btn btn-primary add-product-btn" routerLink="product/add">Add Product</button>
+    </div>
+    
     <Table>
         <tr>
             <th>Product Name</th>
@@ -20,8 +23,8 @@
             <!-- show max first 20 words from description  -->
             <td>{{product.description | slice:0:50}}...</td>
             <td>
-            <button class="btn btn-primary edit-btn" routerLink="{{ 'edit/'+product.id }}" >Edit</button>
-            <button class="btn btn-danger delete-btn">Delete</button>
+            <button class="btn btn-primary edit-btn" routerLink="{{ 'product/edit/'+product.id }}" >Edit</button>
+            <button class="btn btn-danger delete-btn" (click)="deleteProduct(product.id)" >Delete</button>
             </td>
         </tr>
     </Table>

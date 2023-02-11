@@ -63,10 +63,7 @@ export class UsersService {
       ('Authorization', 'Bearer ' + this.getToken())
     };
     return this.http.post<any>(`${environment.APIEndpoint}/api/user/save/manager`, registerForm, options);
-
   }
-
- 
 
   public saveToken(token: string): void {
     // this.cookieService.deleteAll('/');
@@ -210,7 +207,6 @@ export class UsersService {
     order,
     options
     );
-
   }
 
   public getOrderListByUser(){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/shared/User.model';
+import { UsersService } from 'src/app/users/users.service';
 import {AdminService} from "../admin.service";
 
 @Component({
@@ -16,7 +18,7 @@ export class ManageModeratorsComponent implements OnInit {
   errMessage : String;
   userRole: string;
 
-  constructor(private adminService: AdminService, private cookieService: CookieService) { }
+  constructor(private adminService: AdminService, private cookieService: CookieService, private routes: Router, private userService: UsersService) { }
 
   ngOnInit(): void {
     this.userRole = this.cookieService.get('auth-role');
@@ -36,7 +38,7 @@ export class ManageModeratorsComponent implements OnInit {
       },
       error => {
         this.errorOccurred = true;
-        console.log("Error: " + error.message);
+        this.errMessage = error.message;
       }
     );
   }
@@ -49,7 +51,10 @@ export class ManageModeratorsComponent implements OnInit {
       },
       error => {
         this.errorOccurred = true;
-        console.log("Error: " + error.message);
+        if(error.status = 403){
+          this.routes.navigate(["./login"]);
+          this.userService.logout();
+        }
       }
     );
   }
@@ -60,7 +65,10 @@ export class ManageModeratorsComponent implements OnInit {
       },
       error => {
         this.errorOccurred = true;
-        console.log("Error: " + error.message);
+        if(error.status = 403){
+          this.routes.navigate(["./login"]);
+          this.userService.logout();
+        }
       }
     );
   }

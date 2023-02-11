@@ -1,0 +1,31 @@
+.container {
+  margin-top: 30px;
+}
+
+p {
+  color: blue;
+}
+.producten-list-wrapper{
+  // max-width: 1000px;
+  margin: auto;
+}
+/* create 2 variables with primary colour */
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+@import url("https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap");
+* {
+  font-family: "Saira Semi Condensed", sans-serif !important;
+}
+footer{
+  background: #000;
+  padding: 20px;
+  margin-top: 20px;
+  color: white;
+  height: 200px;
+  position: relative;
+  top: 200px;
+  text-align: center;
+
+}
+

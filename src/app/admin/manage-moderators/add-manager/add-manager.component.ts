@@ -12,6 +12,7 @@ export class AddManagerComponent implements OnInit {
 
   usernameExistsError: boolean = false;
   unknownError  : boolean = false;
+  success: boolean = false;
   constructor( private userService: UsersService, private router : Router) { }
 
   ngOnInit(): void {
@@ -20,8 +21,10 @@ export class AddManagerComponent implements OnInit {
   saveManager(form: NgForm){
     this.userService.registerManager(form.value).subscribe(
       (data) => {
-          this.router.navigate(['/login']);
+          this.success = true;
           console.log(data);
+          // clean form
+          form.reset();
       },
       (error) => {
         console.log(error);

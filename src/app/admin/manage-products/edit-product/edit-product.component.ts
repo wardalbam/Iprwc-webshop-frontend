@@ -36,6 +36,18 @@ export class EditProductComponent implements OnInit {
     )
   }
 
+  removeProduct(product_id : string){
+    this.adminService.removeProduct(product_id).subscribe(
+      data =>{
+        // 
+        this.router.navigate(["/admin/manage/product"]);
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+
 
 
 }

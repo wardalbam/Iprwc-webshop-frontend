@@ -1,3 +1,7 @@
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+
 /* style buttnon */
 .add-product-btn {
     width: 140px;
@@ -21,25 +25,36 @@
 }
 
 /* style table */
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
+
+table{
   width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #33365222;
+  border-radius: 5px;
+  padding: 1rem;
+  overflow-x: auto;
 }
+
 th{
-  background-color: rgb(134, 179, 44);
-  padding: 8px;
+  padding: 1rem;
+  background: #000;
+  color: $secondary-color;
 }
+
 td{
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  border: 1px solid #00000022;
+  border-radius: 5px;
+  padding: 1rem;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd33;
+.page-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
 }
-
 /* style edit button as warning small size */
 .edit-btn {
   background-color: #ff9800; /* Orange */

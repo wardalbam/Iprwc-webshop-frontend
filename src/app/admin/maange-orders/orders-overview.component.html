@@ -2,7 +2,6 @@
 
 
 <h1>Orders ({{ orders.length }})</h1>
-
 <div class="orders"  *ngIf="userRole === 'ROLE_USER'">
     <div class="order-container" *ngFor="let order of orders"> 
         <div class="orderLine-container">
@@ -20,7 +19,6 @@
             </div>
         </div>
         <div class="shippingAddress-container">
-            <p>Shipping Address:</p>
             <div>
                 <p> {{ order["shippingAddress"]["addressLine"] }}</p>
                 <p> {{ order["shippingAddress"]["zipcode"] }} - {{ order["shippingAddress"]["city"] }}</p>
@@ -29,7 +27,6 @@
             </div>
         </div>
         <div class="order-details">
-            <p>Username: {{order["username"]}}</p>
             <p> Date created: <strong>{{ order["orderDate"].substring(0, order["orderDate"].indexOf('T')) }} </strong> - <strong> {{ order["orderDate"].substring( order["orderDate"].indexOf('T')+1, order["orderDate"].indexOf('.')) }} </strong>  </p>
             <p> Order id: <strong> {{order["id"]}} </strong> </p>
             <p> Total price: <strong>{{ order["totalPrice"] }}€ </strong>  </p>
@@ -54,6 +51,7 @@
 
 
 <div style="overflow-x: auto;">
+    <!-- add buttom to go back to admin -->
     <table  *ngIf="userRole === 'ROLE_ADMIN' || userRole === 'ROLE_MANAGER'">
         <tr>
             <th>Order Id</th>

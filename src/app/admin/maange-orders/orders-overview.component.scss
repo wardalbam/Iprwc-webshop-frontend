@@ -1,18 +1,28 @@
+// import scss from app.component.scss
+// @import '../app.component.scss';
+// define variable primary color, secondary color and babypowder
+
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
 
 .orders{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    color: $primary-color;
 }
 .order-container{
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 2rem;
-    padding: 1rem;
+    margin: 1rem;
+    padding: 0.5rem;
     max-width: 900px;
     width: 100%;
     background: #33365222;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
 }
 .shippingAddress-container{
@@ -20,7 +30,7 @@
     flex-direction: column;
     align-items: left;
     margin: 0.5rem;
-    border: 1px solid #33365222;
+    border: 1px solid $baby-powder;
     border-radius: 5px;
     padding: 0.5rem;
     
@@ -30,7 +40,7 @@
     flex-direction: row;
     align-items: left;
     margin: 0.5rem;
-    border: 1px solid #33365222;
+    border: 1px solid $baby-powder;
     border-radius: 5px;
     padding: 0.5rem;
 }
@@ -152,11 +162,12 @@ table{
 
 th{
     padding: 1rem;
-    background: rgb(134, 179, 44);
+    background: #000;
+    color: $secondary-color;
 }
 
 td{
-    border: 1px solid #33365222;
+    border: 1px solid #00000022;
     border-radius: 5px;
     padding: 1rem;
 }

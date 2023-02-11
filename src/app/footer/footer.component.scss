@@ -1,0 +1,21 @@
+// import app.compomemt.scss
+@import '../app.component.scss';
+// define variable primary color
+$primary-color: #2D2A32;
+
+:root {
+    --primary-color: #2D2A32;
+    --secondary-color: #DDD92A;
+    --space-color: #FAFDF6;
+  }
+div{
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+
+}
+p{
+  color: #DDD92A;
+}

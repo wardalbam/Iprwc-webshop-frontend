@@ -1,0 +1,82 @@
+// style as scss
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+
+.back-btn{
+    position: relative;
+    display: inline-block;
+    padding: 7px 15px;
+    background-color: $secondary-color !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-left: 1rem;
+    color: $primary-color !important;
+    border: 10px;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+  
+.order-container{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 2rem;
+    padding: 1rem;
+    max-width: 900px;
+    width: 100%;
+    background: #33365222;
+}
+
+.shippingAddress-container{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 0.5rem;
+    border: 1px solid #33365222;
+    border-radius: 5px;
+    padding: 0.5rem;
+    
+}
+
+.orderLine-info{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    margin: 0.5rem;
+    border: 1px solid #33365222;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.orderLine-image img{
+    width: 100px;
+    height: 100px;
+}
+
+.orderLine-info-text{
+    
+    margin: 0.5rem;
+}
+
+.order-details{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    margin: 0.5rem;
+}
+
+.order-actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 5px;
+}
