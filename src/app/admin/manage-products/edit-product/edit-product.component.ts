@@ -12,6 +12,8 @@ import { AdminService } from '../../admin.service';
 export class EditProductComponent implements OnInit {
 
   product: Product;
+  ShowSuccessMessage: boolean = false;
+  successMessage: ' ${product.name} product Uupdated';
   constructor(private route: ActivatedRoute,private router:Router, private productService: ProductService, public adminService:AdminService ) { }
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -24,29 +26,32 @@ export class EditProductComponent implements OnInit {
       }
     )
   }
+
   uploadEditedProduct( form : any){
     this.adminService.editProduct(this.product.id, form).subscribe(
       data =>{
         // go to manage-products component
-        this.router.navigate(["/admin/manage/product"]);
+        this.ShowSuccessMessage = true;
+        this.router.navigate(["/admin"]);
       },
       error =>{
+        this.ShowSuccessMessage = false;
         console.log(error);
       }
     )
   }
 
-  removeProduct(product_id : string){
-    this.adminService.removeProduct(product_id).subscribe(
-      data =>{
-        // 
-        this.router.navigate(["/admin/manage/product"]);
-      },
-      error =>{
-        console.log(error);
-      }
-    )
-  }
+  // removeProduct(product_id : string){
+  //   this.adminService.removeProduct(product_id).subscribe(
+  //     data =>{
+  //       // 
+  //       this.router.navigate(["/admin/manage/product"]);
+  //     },
+  //     error =>{
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
 
 

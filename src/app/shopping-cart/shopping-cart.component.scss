@@ -1,6 +1,12 @@
+$primary-color: #2D2A32;
+$secondary-color: #DDD92A;
+$baby-powder: #FAFDF6;
+
+
 *{
   margin: 0;
   padding: 0;
+  
 }
 .product-container{
   display: flex;
@@ -8,7 +14,7 @@
   margin: 10px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 0.3px solid #33365222;
+  border-bottom: 0.3px solid $primary-color;
 }
 .product-line-pic-name{
   display: flex;
@@ -58,17 +64,19 @@
 }
 
 .checkout-btn{
-  margin-top: 1rem;
-  padding: 1rem;
-  width: 100%;
-  color: #333652;
-  font-size: 1.2rem;
-  background-color: #FAD02C;
+  background: $secondary-color;
+  color: $primary-color;
   border: none;
-  border-radius: 0;
-  transition: 0.4s;
-}
-.checkout-btn:hover{
-  transform: scale(1.01);
-  letter-spacing: 3px;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  &:hover{
+    background: $primary-color;
+    color: $secondary-color;
+    transition: 0.3s;
+  }
 }

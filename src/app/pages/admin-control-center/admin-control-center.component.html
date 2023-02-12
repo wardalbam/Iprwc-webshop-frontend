@@ -5,13 +5,20 @@
 
 <mat-tab-group class="test" fitInkBarToContent>
     <mat-tab label="Orders" class="test1">
-        <app-orders-overview></app-orders-overview>
+        <section id="order">
+            <app-orders-overview></app-orders-overview>
+        </section>
     </mat-tab>
     <mat-tab label="Users" class="test1">
-        <app-manage-moderators></app-manage-moderators>
+        <section id="user">
+            <app-manage-moderators></app-manage-moderators>
+        </section>
+        
     </mat-tab>
     <mat-tab label="Products" class="test1">
-        <app-manage-products></app-manage-products>
+        <section id="product">
+            <app-manage-products></app-manage-products>
+        </section>
     </mat-tab>
 </mat-tab-group>
 

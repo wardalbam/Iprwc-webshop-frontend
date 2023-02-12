@@ -79,26 +79,51 @@ textarea::-webkit-scrollbar {
   width: 0;
 }
 
-button {
-  background: $secondary-color;
-  color: $primary-color;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  transition: 0.4s;
-}
-button:hover {
-  letter-spacing: 2px;
-  box-shadow: none;
-}
 
 
 
 @media (max-width: 425px) {
   form {
     width: 100%;
+  }
+}
+
+// checkout btn make it easy to see
+.btn-primary{
+  background-color: $secondary-color;
+  color: $primary-color;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover{
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+}
+
+.back-btn-container{
+  width: 100%;
+  align-items: left;
+  justify-content: left;
+  
+}
+// put it above the checkout text 
+.back-btn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover{
+    background-color: $primary-color;
+    color: $secondary-color;
   }
 }

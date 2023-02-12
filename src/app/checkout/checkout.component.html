@@ -1,5 +1,11 @@
 
+
 <div class="container">
+  <!-- go back btn to shippingcart component -->
+  <div class="back-btn-container">
+    <button class="back-btn" routerLink="/cart"> < Back to Cart </button>
+  </div>
+
   <section class="check-login" *ngIf="!isLoggedIn">
     <h4>You need to login to place an order</h4>
     <p>Go to <a routerLink="../login">login</a></p>

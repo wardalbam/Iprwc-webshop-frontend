@@ -22,9 +22,7 @@ export class UsersService {
   private ROLE = 'auth-role';
   private USERNAME = 'auth-username';
   public loggedIn: Subject<boolean> = new Subject<false>();
-
   public UserRole: Subject<string> = new Subject<string>();
-
   private LOGGED_IN = 'isLoggedIn';
   private TOKEN_KEY = 'auth-token';
 
@@ -42,7 +40,6 @@ export class UsersService {
     this.cookieService.deleteAll('auth-username');
     this.cookieService.delete('auth-role');
     this.cookieService.delete('auth-token');
-
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
@@ -51,11 +48,12 @@ export class UsersService {
     body.set('password', userForm['password']);
     this.user.next(this.getUser());
     return this.http.post<any>(`${environment.APIEndpoint}/login`, body.toString(), options);
-    
   }
+
   registerUser(registerForm : any){
     return this.http.post<any>(`${environment.APIEndpoint}/api/user/save`, registerForm);
   }
+
   registerManager(registerForm : any){
     // add token to header]
     let options = {
@@ -76,6 +74,7 @@ export class UsersService {
   public getToken(): string | null {
     return this.cookieService.get(this.TOKEN_KEY)
   }
+
   public saveUsername(token: string): void {
     this.cookieService.delete(this.USERNAME);
     this.cookieService.set(this.USERNAME, this.extractUsername(token), {secure: true, sameSite: 'Strict', expires: this.getExpiryTime()})
@@ -84,6 +83,7 @@ export class UsersService {
   public getUsername(): string {
     return this.cookieService.get(this.USERNAME);
   }
+
   public getUser(): string {
     return this.cookieService.get(this.USERNAME);
   }
@@ -166,6 +166,7 @@ export class UsersService {
         this.loggedIn.next(false);
       },
       error: err => {
+        this.loggedIn.next(false);
         console.log(err);
       }
     })
