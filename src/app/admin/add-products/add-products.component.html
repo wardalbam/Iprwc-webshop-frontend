@@ -1,4 +1,13 @@
 <button class="back-btn" routerLink="/admin"> < Back </button>
+
+<!-- show success or error message give background red if error and green if success-->
+<div class="alert alert-success" *ngIf="success">
+  <strong>Success!</strong> {{alertMessage}}
+</div>
+<div class="alert alert-danger" *ngIf="error">
+  <strong>Error!</strong> {{alertMessage}}
+</div>
+
 <!-- form for adding new product -->
 <form #myForm="ngForm" (submit)="onUploadProduct(myForm.value)" ngNativeValidate>
   <h2>Add new product</h2>

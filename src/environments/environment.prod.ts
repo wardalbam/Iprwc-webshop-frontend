@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  APIEndpoint: 'http://127.0.0.1:8080'
+  production: false,
+  APIEndpoint: 'https://spring-production-5820.up.railway.app'
 };

@@ -1,3 +1,10 @@
+<!-- success message or error -->
+<div class="alert alert-success" *ngIf="ShowSuccessMessage">
+    <strong>Success!</strong> {{successMessage}}
+</div>
+<div class="alert alert-danger" *ngIf="ShowErrorMessage">
+    <strong>Error!</strong> {{errorMessage}}
+</div>
 <!-- show form with preset values that you can take from the product var -->
 <form #myForm="ngForm" ngNativeValidate (submit)="uploadEditedProduct(myForm.value)">
     <h2>Edit product</h2>
@@ -27,8 +34,5 @@
         </select>
     </div>
     <button type="submit" class="btn btn-primary submit-btn" [disabled]="!myForm.valid" >Submit</button>
-    <!-- success message -->
-    <div class="alert alert-success" *ngIf="successMessage">
-        <strong>Success!</strong> {{successMessage}}
-    </div>
+    
 </form>

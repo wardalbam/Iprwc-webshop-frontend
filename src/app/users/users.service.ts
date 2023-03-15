@@ -25,6 +25,7 @@ export class UsersService {
   public UserRole: Subject<string> = new Subject<string>();
   private LOGGED_IN = 'isLoggedIn';
   private TOKEN_KEY = 'auth-token';
+  
 
   constructor(private router: Router, private http : HttpClient, private cookieService: CookieService) {
      if( this.isLoggedIn() ){

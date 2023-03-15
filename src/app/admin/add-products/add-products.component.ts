@@ -10,7 +10,9 @@ import {Product} from "../../shared/Product.model";
 })
 export class AddProductsComponent implements OnInit {
   showAlert = false;
-  alertMessage :string;
+  alertMessage: string;
+  success :boolean = false;
+  error :boolean = false;
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -19,13 +21,15 @@ export class AddProductsComponent implements OnInit {
     console.log(form);
     this.adminService.uploadProduct(form).subscribe(
       data =>{
-        this.showAlert = true;
+        this.success = true;
+        this.error = false;
         this.alertMessage = "success!! you have added new product" + form.value["name"] ;
         form.reset();
       },
       error =>{
-        this.showAlert = true;
-        this.alertMessage= error.message;
+        this.error = true;
+        this.success = false;
+        this.alertMessage = "something went wrong try again later! \n status:" + error.status ;
       }
     )
   }

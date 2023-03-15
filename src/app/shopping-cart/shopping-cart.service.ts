@@ -4,11 +4,13 @@ import {Product} from "../shared/Product.model";
 import {ShoppingCartLineModel} from "./shopping-cart-line.model";
 import {Subject} from "rxjs";
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  
   public shoppingCartAmount: Subject<number> = new Subject<number>();
   public shoppingCart : ShoppingCartModel = new ShoppingCartModel([]);
 

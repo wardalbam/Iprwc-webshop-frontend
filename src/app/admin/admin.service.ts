@@ -8,24 +8,19 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  baseUrl = `http://127.0.0.1:8080/api`;
+  baseUrl = `${environment.APIEndpoint}`;
   constructor(private http : HttpClient, private userService : UsersService) { }
 
-
   uploadProduct(productData: any){
-    // from any to product 
-    // let product = new Product(productData.name, productData.price, productData.ImagePath, productData.description, productData.status);
-    // console.log(product);
     const params = new HttpParams()
     .set("product", productData);
-
     const token = this.userService.getToken();
     let options = {
       headers: new HttpHeaders()
       .set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.post<any>( this.baseUrl+"/product/add",productData, options);
+    return this.http.post<any>( this.baseUrl+"/api/product/add",productData, options);
   }
 
   // edit existing product
@@ -37,7 +32,7 @@ export class AdminService {
       ('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.post<any>( this.baseUrl+"/product/edit",{
+    return this.http.post<any>( this.baseUrl+"/api/product/edit",{
       "id": productData,
       "newProductForm": form,
     }, options);
@@ -57,7 +52,7 @@ export class AdminService {
     };
     console.log(token);
     return this.http.get<any>( 
-      "http://127.0.0.1:8080/api/user/all", options);
+      this.baseUrl+"/api/user/all", options);
   }
 
   getAllUsersAsManager(){
@@ -69,7 +64,7 @@ export class AdminService {
     };
     console.log(token);
     return this.http.get<any>( 
-      "http://127.0.0.1:8080/api/user/all/roleuser", options);
+      this.baseUrl+"/api/user/all/roleuser", options);
       
   }
 

@@ -3,12 +3,13 @@ import {Product} from "../shared/Product.model";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {error} from "@angular/compiler/src/util";
 import { UsersService } from '../users/users.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  
+  baseUrl = `${environment.APIEndpoint}`;
   // productenList : Product[] = [];
   constructor(private http: HttpClient, private userService:UsersService) {
     // this.http.get<Product[]>(`http://127.0.0.1:8080/api/product/all`).subscribe(
@@ -21,7 +22,7 @@ export class ProductService {
   }
 
   getAllProducts(){
-    return this.http.get<Product[]>(`http://127.0.0.1:8080/api/product/all`);
+    return this.http.get<Product[]>( this.baseUrl+`/api/product/all`);
   }
   getAllAdminProducts(){
     // add token to header
@@ -32,14 +33,14 @@ export class ProductService {
         ('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
     }
-    return this.http.get<Product[]>(`http://127.0.0.1:8080/api/admin/product/all`, options);
+    return this.http.get<Product[]>(this.baseUrl+`/api/admin/product/all`, options);
   }
 
   
   getProduct(id : string){
     const params = new HttpParams()
       .set("id", id);
-    return this.http.get<Product>(`http://127.0.0.1:8080/api/product/${id}`, {params});
+    return this.http.get<Product>(this.baseUrl+`/api/product/${id}`, {params});
   }
 
   deleteProduct(id : string){
@@ -47,6 +48,6 @@ export class ProductService {
     let options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
     }
-    return this.http.delete(`http://127.0.0.1:8080/api/product/delete/${id}`, options)
+    return this.http.delete(this.baseUrl+`/api/product/delete/${id}`, options)
   }
 }

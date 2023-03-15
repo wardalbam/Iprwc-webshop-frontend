@@ -31,10 +31,12 @@ export class OrdersOverviewComponent implements OnInit {
       },
       error =>{
         console.log(error);
+
         if(error.status = 403){
           this.routes.navigate(["./login"]);
           this.userService.logout();
         }
+        
       } 
     );
   }
@@ -43,8 +45,8 @@ export class OrdersOverviewComponent implements OnInit {
     this.adminService.updateOrderStatus(orderId, orderStatus).subscribe(
       data => {
         console.log(data);
-        //  reload page
-        window.location.reload(); 
+        //  reload
+        this.ngOnInit();
     },
     error =>{
       console.log(error);

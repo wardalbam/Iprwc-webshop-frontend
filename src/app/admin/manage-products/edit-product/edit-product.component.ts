@@ -13,7 +13,9 @@ export class EditProductComponent implements OnInit {
 
   product: Product;
   ShowSuccessMessage: boolean = false;
+  ShowErrorMessage: boolean = false;
   successMessage: ' ${product.name} product Uupdated';
+  errorMessage: ' ${product.name} product cannot be Uupdated.';
   constructor(private route: ActivatedRoute,private router:Router, private productService: ProductService, public adminService:AdminService ) { }
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -31,11 +33,13 @@ export class EditProductComponent implements OnInit {
     this.adminService.editProduct(this.product.id, form).subscribe(
       data =>{
         // go to manage-products component
+        this.ShowErrorMessage = false;
         this.ShowSuccessMessage = true;
         this.router.navigate(["/admin"]);
       },
       error =>{
         this.ShowSuccessMessage = false;
+        this.ShowErrorMessage = true;
         console.log(error);
       }
     )

@@ -23,13 +23,18 @@ export class LoginPageComponent implements OnInit {
         this.userService.saveToken(data.access_token);
         this.loginError = false;
         this.userService.setLoggedIn();
-        this.router.navigate(['/']);
+        // if user role is not user => go to admin panel
+        if (this.userService.getRole() !== 'ROLE_USER') {
+          this.router.navigate(['/admin']);
+        }else{
+          this.router.navigate(['/']);
+        }
         this.token = data;
         form.resetForm();
         this.userService.loggedIn.next(true);
         this.userService.setLoggedIn();
       },
-    (error) => {
+     error => {
       this.loginError = true;
         this.token = null;
       }
